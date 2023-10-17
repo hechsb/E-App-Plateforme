@@ -22,9 +22,6 @@ function Sidebars() {
       >
         <Sidebar.Items style={{ backgroundColor: "white" }}>
           <Sidebar.ItemGroup style={{ backgroundColor: "white" }}>
-          <Link to='admin/home' ><div><Sidebar.Item icon={HiHome}>
-              <p style={{ color: "black", fontSize: "20px" }}>Home</p>
-            </Sidebar.Item></div></Link>
             <Link to="admin/users"> <div>  <Sidebar.Item  icon={HiUsers}>
               <span style={{ color: "black", fontSize: "20px" }}> Users</span>
             </Sidebar.Item></div></Link>
