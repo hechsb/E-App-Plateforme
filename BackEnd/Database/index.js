@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes, INTEGER } = require("sequelize");
 const config = require("./config/config.json");
 
-const sequelize = new Sequelize(config.database, config.User, config.password, {
+const sequelize = new Sequelize(config.database, config.user, config.password, {
   host: config.host,
   dialect: "mysql",
 });
@@ -57,7 +57,7 @@ const connect = async () => {
   }
 };
 
-// db.sequelize.sync({ force: true });
+//db.sequelize.sync({ force: true });
 
 connect();
 module.exports = db;
