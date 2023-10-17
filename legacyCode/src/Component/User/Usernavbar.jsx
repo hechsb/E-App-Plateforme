@@ -5,13 +5,17 @@ import { userContext } from "../../App";
 
 
 function Usernavbar() {
-  const { user } = useContext(userContext); 
+  const { user, setUser } = useContext(userContext);
   const navbarStyle = {
     backgroundColor: "#F9FAFB",
   };
+  const handleSignOut = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+  };
   return (
     <div >
-         <Navbar  fluid rounded style={navbarStyle}>
+      <Navbar fluid rounded style={navbarStyle}>
         <Navbar.Brand>
           <Link to="user/home">
             <i
@@ -47,22 +51,22 @@ function Usernavbar() {
             </Dropdown.Header>
             <p>Settings</p>
             <Dropdown.Divider />
-            <Link to="/">
+            <Link to="/" onClick={handleSignOut}>
               <span>Sign out</span>
             </Link>
           </Dropdown>
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
-        <span
-              className="flex items-center"
-              style={{ color: "black", fontSize: "24px" }}
-            >
+          <span
+            className="flex items-center"
+            style={{ color: "black", fontSize: "24px" }}
+          >
 
-            </span>
+          </span>
         </Navbar.Collapse>
-      </Navbar>  
-      </div>
+      </Navbar>
+    </div>
   );
 }
 

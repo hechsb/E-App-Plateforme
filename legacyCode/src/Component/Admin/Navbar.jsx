@@ -3,13 +3,17 @@ import { Dropdown, Navbar, Avatar } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { userContext } from "../../App";
 function Navbars() {
-  const { user } = useContext(userContext); 
+  const { user, setUser } = useContext(userContext);
   const navbarStyle = {
     backgroundColor: "#F9FAFB",
   };
+  const handleSignOut = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+  };
   return (
     <div >
-         <Navbar  fluid rounded style={navbarStyle}>
+      <Navbar fluid rounded style={navbarStyle}>
         <Navbar.Brand>
           <Link to="home">
             <i
@@ -46,21 +50,21 @@ function Navbars() {
             <p>Settings</p>
             <Dropdown.Divider />
             <Link to="/">
-              <span>Sign out</span>
+              <span onClick={handleSignOut}>Sign out</span>
             </Link>
           </Dropdown>
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
-        <span
-              className="flex items-center"
-              style={{ color: "black", fontSize: "24px" }}
-            >
-              {user.role} dashboard
-            </span>
+          <span
+            className="flex items-center"
+            style={{ color: "black", fontSize: "24px" }}
+          >
+            {user.role} dashboard
+          </span>
         </Navbar.Collapse>
-      </Navbar>  
-      </div>
+      </Navbar>
+    </div>
   );
 }
 

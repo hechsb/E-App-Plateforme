@@ -20,71 +20,33 @@ const UserPersonnel = () => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: '20px',
-        maxWidth: '600px',
-        margin: '0 auto',
-      }}
-    >
-      <h2 style={{ fontSize: '32px' }}>Todo List</h2>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+    <div className="max-w-md mx-auto p-6 bg-white shadow-md rounded-lg"  style={{ position: "absolute", left: "750px", top: "150px" }}>
+      <h2 className="text-2xl font-semibold text-center mb-6">Todo List</h2>
+      <div className="flex items-center">
         <input
           type="text"
           value={todoInput}
           onChange={(e) => setTodoInput(e.target.value)}
           placeholder="Add a new todo"
-          style={{
-            padding: '10px',
-            fontSize: '18px',
-            marginRight: '20px',
-            flex: 1,
-          }}
+          className="p-2 text-lg border border-gray-300 rounded-l-lg w-full focus:outline-none focus:ring focus:border-blue-400"
         />
         <button
           onClick={addTodo}
-          style={{
-            backgroundColor: '#FF6219',
-            color: 'white',
-            border: 'none',
-            padding: '10px 20px',
-            cursor: 'pointer',
-            fontSize: '18px',
-          }}
+          className="bg-orange-500 text-white font-semibold p-2 px-4 rounded-r-lg cursor-pointer text-lg hover:bg-orange-600 transition duration-300"
         >
           Add
         </button>
       </div>
-      <ul style={{ listStyleType: 'none', padding: '0', textAlign: 'center' }}>
+      <ul className="list-none text-center mt-6"  >
         {todos.map((todo, index) => (
           <li
             key={index}
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-         
-              border: '1px solid #ccc',
-              padding: '10px',
-              margin: '10px 0',
-              maxWidth: '100%',
-              width: '100%', // Set a fixed width
-              fontSize: '24px',
-            }}
+            className="flex justify-between items-center border border-gray-300 p-4 mb-4 rounded-lg"
           >
-            {todo}
+            <span className="text-xl">{todo}</span>
             <button
               onClick={() => removeTodo(index)}
-              style={{
-                backgroundColor: 'red',
-                color: 'white',
-                border: 'none',
-                padding: '10px 20px',
-                cursor: 'pointer',
-                fontSize: '20px',
-              }}
+              className="bg-red-500 text-white p-2 rounded-lg cursor-pointer text-lg hover:bg-red-600 transition duration-300"
             >
               <HiOutlineTrash size={24} />
             </button>
