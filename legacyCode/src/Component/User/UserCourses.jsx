@@ -23,7 +23,7 @@ const   UserCourses = () => {
     }, []);
     console.log(courses)
     return (
-        <div>
+        <div >
             <ul className="course-list">
                 {courses.map(course => (
                     <li className="course-list-item" key={course.id}>
