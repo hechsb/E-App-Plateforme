@@ -33,52 +33,52 @@ module.exports = {
     }
   },
 
-    logUser : async(req,res)=>{
-        const {email , password}=req.body
-        const user = await db.User.findOne({where :{email}})
-        
-     
-        if(user){
-            // console.log(password,user.password);
-            const valid_password= await bcrypt.compare(password,user.password)
-            console.log(valid_password);
-            if(valid_password){
-                const token = jwt.sign({
-                    id: user.id,
-                    email: user.email,
-                    firstName: user.firstName,
-                    role: user.role,
-                  }, process.env.jwt_SECRET);
-                res.json({message:"Welcome Back",token:token ,user:{"id":user.id,"email":user.email,"firstName":user.firstName,"role":user.role,}})
-            }else {
-                res.status(400).json({ error : "Password Incorrect" });
-            }
-        }else {
-            
-            res.status(404).json({ error : "User does not exist" });
-        }
-    },
+  logUser: async (req, res) => {
+    const { email, password } = req.body
+    const user = await db.User.findOne({ where: { email } })
 
-    getUser : async(req,res)=>{
-        
-        const {Userid}=req.params
-        try{
-            const User =await db.User.findOne({
-                where: {
-                    id: Userid,
-                  },
-            })
-            res.status(200).json({message : {"firstName":User.firstName , "lastName":User.lastName,"email":User.email}})
-        }catch(err){
 
-            res.status(500).send(err)
-        }
-    },
+    if (user) {
+      // console.log(password,user.password);
+      const valid_password = await bcrypt.compare(password, user.password)
+      console.log(valid_password);
+      if (valid_password) {
+        const token = jwt.sign({
+          id: user.id,
+          email: user.email,
+          firstName: user.firstName,
+          role: user.role,
+        }, process.env.jwt_SECRET);
+        res.json({ message: "Welcome Back", token: token, user: { "id": user.id, "email": user.email, "firstName": user.firstName, "role": user.role, } })
+      } else {
+        res.status(400).json({ error: "Password Incorrect" });
+      }
+    } else {
+
+      res.status(404).json({ error: "User does not exist" });
+    }
+  },
+
+  getUser: async (req, res) => {
+
+    const { Userid } = req.params
+    try {
+      const User = await db.User.findOne({
+        where: {
+          id: Userid,
+        },
+      })
+      res.status(200).json({ message: { "firstName": User.firstName, "lastName": User.lastName, "email": User.email } })
+    } catch (err) {
+
+      res.status(500).send(err)
+    }
+  },
 
 
   getAllClasses: async (req, res) => {
     // const userId = req.params.userId;
-    console.log("it's" +req.userId)
+    console.log("it's" + req.userId)
     try {
       const { classes } = await User.findByPk(req.userId, {
         include: {
@@ -88,7 +88,7 @@ module.exports = {
           },
         },
       });
-        // console.log(classes);
+      // console.log(classes);
       res.status(200).json(classes);
     } catch (err) {
       console.error(err);
