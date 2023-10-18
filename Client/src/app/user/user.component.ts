@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Class } from '../class'
+import { ClassService } from '../../Services/class.service'
 
 @Component({
   selector: 'app-user',
@@ -7,4 +9,28 @@ import { Component } from '@angular/core';
 })
 export class UserComponent {
 
+
+  classes: Class[] = []
+
+  constructor(private classService: ClassService) {
+
+  }
+
+
+  getClasses(): void {
+    this.classService.getClasses()
+      .subscribe(classes => this.classes = classes);
+  }
+
+  ngOnInit(): void {
+    this.getClasses()
+  }
+
 }
+
+
+
+
+
+
+
