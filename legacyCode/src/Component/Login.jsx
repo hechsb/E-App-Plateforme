@@ -26,7 +26,7 @@ function Login() {
       .then((response) => {
         localStorage.setItem("token", response.data.token);
         setUser(response.data.user);
-
+        
         if (response.data.user.role === "admin") {
           console.log("hello admin");
           navigate("/layout");
