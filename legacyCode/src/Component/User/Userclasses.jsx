@@ -8,8 +8,9 @@ function Userclasses() {
   const { user } = useContext(userContext);
   const [classData, setClassData] = useState([]);
   const [joinStatus, setJoinStatus] = useState("Join Class");
-  const [classSelected, setClassSelected] = useState("");
+
   const [hiddenClasses, setHiddenClasses] = useState([]);
+  
 
   useEffect(() => {
     axios
@@ -22,9 +23,7 @@ function Userclasses() {
       });
   }, []);
 
-  const filteredClasses = classData.filter((cls) => {
-    return cls.name.toLowerCase().includes(searchTerm.toLowerCase());
-  });
+ 
 
   const handleJoinClick = (classId) => {
     axios
@@ -39,6 +38,9 @@ function Userclasses() {
         console.log(err);
       });
   };
+  const filteredClasses = classData.filter((cls) => {
+    return cls.name.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
   return (
     <div  >
@@ -96,7 +98,6 @@ function Userclasses() {
         ))}
       </div>
     </div>
-    
   );
 }
 

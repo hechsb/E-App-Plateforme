@@ -26,7 +26,7 @@ const Courses = () => {
             <ul className="course-list">
                 {courses.map(course => (
                     <li className="course-list-item" key={course.id}>
-                        <Course course={course} />
+                        <Course course={course} fetchCourses={fetchCourses} />
                     </li>
                 ))}
 

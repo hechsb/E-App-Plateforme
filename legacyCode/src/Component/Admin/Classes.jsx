@@ -25,24 +25,38 @@ function Classes() {
       console.error("Error uploading image to Cloudinary:", error);
     }
   };
+  const fetchClasses = async () => {
+    try {
+      const { data } = await axios.get("http://localhost:3000/classess/getAll")
+      setClassList(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
-    axios.get("http://localhost:3000/classess/getAll")
-      .then((response) => {
-        setClassList(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching classes:", error);
-      });
+    fetchClasses();
   }, []);
 
   const filteredClasses = classList.filter((classInfo) => {
     return classInfo.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
+  const handleDelete = async (classId) => {
+    const shouldDelete = window.confirm("Are you sure you want to delete this course?");
+    if (shouldDelete) {
+      try {
+        await axios.delete(`http://localhost:3000/classess/${classId}`);
+        fetchClasses();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/classess/", {
+      await axios.post("http://localhost:3000/classess/", {
         name,
         image: image,
       });
@@ -70,7 +84,7 @@ function Classes() {
   };
 
   return (
-    <div className="px-3 py-4 flex" style={{ backgroundColor: "#D3D3D3", flex: 1, overflowY: "auto" }}>
+    <div className="px-3 py-4 flex" style={{ flex: 1, overflowY: "auto" }}>
 
       <button
         onClick={openModal}
@@ -256,29 +270,28 @@ function Classes() {
       </form>
       <div className="grid grid-cols-3 gap-4" style={{ marginRight: '100px' }}>
         {filteredClasses.map((classInfo) => (
-          <Link to={`/layout/info/${classInfo.id}`}><div key={classInfo.id}>
-            <div style={{ flex: '1', minWidth: '50px', margin: '50px 0', padding: '5px', cursor: 'pointer', }}>
-              <a
-                href="#"
-                className="flex items-center bg-white border border-gray-500 rounded-lg hover:bg-gray-100 dark:border-gray-1000 dark-bg-gray-800 dark-hover-bg-gray-700"
-                style={{ boxShadow: '10px 2px 5px rgba(0, 0, 0, 0.1)' }}
-              >
-                <img
-                  className="object-cover w-full rounded-t-lg h-45 md:h-48 md:w-48"
-                  src={classInfo.image}
-                  alt={classInfo.name}
-                />
-                <div className="flex flex-col justify-between p-4 leading-normal">
+          <div key={classInfo.id} style={{ flex: '1', minWidth: '50px', margin: '50px 0', padding: '5px', cursor: 'pointer' }}>
+            <Link to={`/layout/info/${classInfo.id}`}>
+              <div className="flex flex-col items-center bg-white border border-gray-500 rounded-lg hover:bg-gray-100 dark:border-gray-1000 dark-bg-gray-800 dark-hover-bg-gray-700" style={{ boxShadow: '10px 2px 5px rgba(0, 0, 0, 0.1)' }}>
+                <img className="object-cover w-full rounded-t-lg h-45 md:h-48 md:w-48" src={classInfo.image} alt={classInfo.name} />
+                <div className="flex flex-col items-center justify-between p-4 leading-normal">
                   <h5 className="mb-2 text-2xl font-bold text-gray-900 dark-text-white">
                     {classInfo.name}
                   </h5>
                 </div>
-              </a>
+              </div>
+            </Link>
+            <div className="flex justify-around mt-2">
+              <button
+                type="button"
+                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                onClick={() => handleDelete(classInfo.id)}>
+                Delete
+              </button>
             </div>
-          </div></Link>
+          </div>
         ))}
       </div>
-
     </div>
   );
 }
