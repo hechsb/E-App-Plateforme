@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Class } from '../../class'
-import { ClassService } from '../../../Services/class.service'
+import { ClassService } from '../../../Services/class.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-classes',
@@ -12,7 +13,7 @@ export class ClassesComponent {
 
   classes: Class[] = []
 
-  constructor(private classService: ClassService) {
+  constructor(private classService: ClassService, private route: ActivatedRoute) {
 
   }
 
@@ -20,6 +21,20 @@ export class ClassesComponent {
   getClasses(): void {
     this.classService.getClasses()
       .subscribe(classes => this.classes = classes);
+  }
+
+  joinClass(classID: number, userID: number): void {
+
+    this.classService.joinClass(classID, userID)
+      .subscribe(
+        (response) => {
+          alert("Your request was sent to the admin.");
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+
   }
 
   ngOnInit(): void {

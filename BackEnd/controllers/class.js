@@ -73,7 +73,7 @@ module.exports = {
   addUserToClass: async (req, res) => {
     const classId = req.params.classId;
     const userId = req.params.userId;
-  
+
     try {
       const classRoom = await Class.findByPk(classId);
       if (!classRoom) {
@@ -85,7 +85,7 @@ module.exports = {
         console.log("owwwwwwww problem user")
         return res.status(404).send('User not found');
       }
-  
+
       await classRoom.addUser(user, { status: 'pending' });
       res.status(201).send('User request to join the class is pending');
     } catch (error) {
@@ -119,7 +119,7 @@ module.exports = {
       console.error(error);
       res.status(500).send("An error occurred: " + error.message);
     }
-  },  
+  },
 
   //for accepted users  
   getUserEnrolledClasses: async (req, res) => {
@@ -147,7 +147,7 @@ module.exports = {
       res.status(500).send("An error occurred: " + error.message);
     }
   },
-  
+
   rejectUserRequest: async (req, res) => {
     const classId = req.params.classId;
     const userId = req.params.userId;
@@ -189,5 +189,5 @@ module.exports = {
       res.status(500).send("An error occurred: " + error.message);
     }
   }
-  
+
 };

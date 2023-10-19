@@ -5,12 +5,15 @@ import { TestRedirectionAdminComponent } from './admin/test-redirection-admin/te
 import { SignInComponent } from './sign-in/sign-in.component';
 import { UserComponent } from './user/user.component'
 import { ClassesComponent } from './user/classes/classes.component';
+import { HomeComponent } from './user/home/home.component'
+import { CoursesComponent } from './user/courses/courses.component'
 const routes: Routes = [
-  {path : '', component : SignInComponent},
+  { path: '', component: SignInComponent },
   { path: 'userPage', component: TestRedirectionUserComponent },
-  {path : 'adminPage ', component : TestRedirectionAdminComponent },
-  { path: 'user', component: UserComponent },
- { path: 'classes', component: ClassesComponent }
+  { path: 'adminPage ', component: TestRedirectionAdminComponent },
+  { path: 'student-home', component: HomeComponent },
+  { path: 'student-classes', component: ClassesComponent },
+  { path: 'student-courses/:id', component: CoursesComponent }
 
 ];
 

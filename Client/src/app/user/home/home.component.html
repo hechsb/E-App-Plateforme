@@ -1,0 +1,105 @@
+<app-user-nav-bar></app-user-nav-bar>
+<div>
+  <div>
+    <div>
+      <form class="flex items-center">
+        <label for="search" class="sr-only">
+          Search
+        </label>
+        <div class="relative w-full xl:w-96">
+          <input type="text" id="search"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full px-4 py-2.5 dark-bg-gray-700 dark-border-gray-600 dark-placeholder-gray-400 dark-text-white dark-focus:ring-orange-500 dark-focus:border-orange-500"
+            placeholder="Search for a class..." required
+            style="position: relative; left: 250%; transform: translate(-50%, -120%);" />
+        </div>
+      </form>
+    </div>
+    <div class="class-container grid grid-cols-3 gap-4" style="margin-left: 5%; width: 80%;">
+      <ng-container>
+        <div *ngFor="let class of classes" class="class-card">
+          <a routerLink="/student-courses/{{class.id}}">
+            <div
+              class="flex items-center bg-white border border-gray-500 rounded-lg hover-bg-gray-100 dark-border-gray-1000 dark-bg-gray-800 dark-hover-bg-gray-700">
+              <img class="object-cover w-full rounded-t-lg h-96 md:h-48 md:w-48" [src]="class.image" alt="" />
+              <div class="flex flex-col justify-between p-4 leading-normal">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark-text-white">
+                  {{class.name}}
+                </h5>
+              </div>
+            </div>
+          </a>
+        </div>
+      </ng-container>
+      <ng-template #noCourses>
+        <div>
+          <h1 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+            Your classes
+          </h1>
+          <p class="no-courses-message">
+            You are not enrolled in any courses yet. If you want to see our available click here
+            <a>Classes</a>
+          </p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- <div>
+    <div>
+      <div>
+        <form class="flex items-center">
+          <label for="search" class="sr-only">
+            Search
+          </label>
+          <div class="relative w-full xl:w-96">
+            <input
+              type="text"
+              id="search"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full px-4 py-2.5 dark-bg-gray-700 dark-border-gray-600 dark-placeholder-gray-400 dark-text-white dark-focus:ring-orange-500 dark-focus:border-orange-500"
+              placeholder="Search for a class..."
+              [(ngModel)]="searchTerm"
+              (input)="onSearchTermChange($event)"
+              required
+              style="position: relative; left: 200%; transform: translate(-50%, -50%);"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="class-container grid grid-cols-3 gap-4">
+        <ng-container *ngIf="courses.length > 0; else noCourses">
+          <div *ngFor="let course of filteredClasses; let i = index" [key]="course.id" class="class-card">
+            <a href="#">
+              <div class="flex items-center bg-white border border-gray-500 rounded-lg hover-bg-gray-100 dark-border-gray-1000 dark-bg-gray-800 dark-hover-bg-gray-700">
+                <img
+                  class="object-cover w-full rounded-t-lg h-96 md:h-48 md:w-48"
+                  [src]="course.image"
+                  alt=""
+                />
+                <div class="flex flex-col justify-between p-4 leading-normal">
+                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark-text-white">
+                    {{ course.name }}
+                  </h5>
+                </div>
+              </div>
+            </a>
+          </div>
+        </ng-container>
+        <ng-template #noCourses>
+          <div>
+            <h1 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+              Your classes
+            </h1>
+            <p class="no-courses-message">
+              You are not enrolled in any courses yet. If you want to see our available click here
+              <a [routerLink]="/UserLayout/user/classes">Classes</a>
+            </p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div> -->
