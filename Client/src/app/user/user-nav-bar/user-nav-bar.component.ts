@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class UserNavBarComponent {
 
+  log(something: any): void {
+    console.log(something)
+  }
+
+  showMe: boolean = false
+
+  toggle(): void {
+    this.showMe = !this.showMe
+  }
+
 }
