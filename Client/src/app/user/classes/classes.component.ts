@@ -13,15 +13,20 @@ export class ClassesComponent {
 
   classes: Class[] = []
 
+  filteredItems: Class[] = this.classes;
+
   constructor(private classService: ClassService, private route: ActivatedRoute) {
 
   }
+
 
 
   getClasses(): void {
     this.classService.getClasses()
       .subscribe(classes => this.classes = classes);
   }
+
+
 
   joinClass(classID: number, userID: number): void {
 
