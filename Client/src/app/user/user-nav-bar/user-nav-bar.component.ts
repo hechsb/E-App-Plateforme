@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-user-nav-bar',
@@ -6,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-nav-bar.component.css']
 })
 export class UserNavBarComponent {
+
+  constructor(private router: Router) { }
 
   log(something: any): void {
     console.log(something)
@@ -15,6 +19,12 @@ export class UserNavBarComponent {
 
   toggle(): void {
     this.showMe = !this.showMe
+  }
+
+  logout(): void {
+    localStorage.clear()
+    this.router.navigate(['/']);
+
   }
 
 }

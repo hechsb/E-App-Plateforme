@@ -48,7 +48,7 @@ module.exports = {
           email: user.email,
           firstName: user.firstName,
           role: user.role,
-        }, process.env.jwt_SECRET);
+        }, process.env.jwt_SECRET,{ expiresIn: '1d' });
         res.json({ message: "Welcome Back", token: token, user: { "id": user.id, "email": user.email, "firstName": user.firstName, "role": user.role, } })
       } else {
         res.status(400).json({ error: "Password Incorrect" });
@@ -57,6 +57,7 @@ module.exports = {
 
       res.status(404).json({ error: "User does not exist" });
     }
+    
   },
 
   getUser: async (req, res) => {

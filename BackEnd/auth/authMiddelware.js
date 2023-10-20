@@ -11,12 +11,17 @@ const verifyToken = (req, res, next) => {
   }
 
   jwt.verify(token, process.env.jwt_SECRET, (err, decoded) => {
-    if (err) {
+    if (!err) {
+     
+      req.userId = decoded.id;
+
+      next();
+     
+    }if(err){
+      console.log("jawhaaaaaaaaaaaaaaaaaaaaaar")
       return res.status(401).send({ message: "Unauthorized!" });
     }
-    req.userId = decoded.id;
 
-    next();
   });
 };
 

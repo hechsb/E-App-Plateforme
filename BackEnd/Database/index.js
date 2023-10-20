@@ -2,7 +2,7 @@ const { Sequelize, DataTypes, INTEGER } = require("sequelize");
 const config = require("./config/config.json");
 
 const sequelize = new Sequelize(config.database, config.user, config.password, {
-  host: config.host,
+  host: config.host,  
   dialect: "mysql",
 });
 const db = {};

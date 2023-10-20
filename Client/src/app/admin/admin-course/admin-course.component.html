@@ -8,7 +8,7 @@
       <ng-container *ngIf="isEditMode; else displayMode">
         <div>
           <form>
-            <input type="text" [(ngModel)]="updatedName" placeholder="Enter updated name" />
+            <!-- <input type="text" [(ngModel)]="updatedName" placeholder="Enter updated name" /> -->
             <!-- <input type="file" accept="application/pdf" (change)="updatedFile = $event.target.file[0]" /> -->
             <button type="button" (click)="handleUpdate()">Submit</button>
             <button type="button" (click)="isEditMode = false">Cancel</button>
