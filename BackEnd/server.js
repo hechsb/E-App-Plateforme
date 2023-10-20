@@ -7,15 +7,17 @@ const UserRouter = require("./routes/user");
 const courseRouter = require("./routes/course");
 require("dotenv").config();
 const { OpenAI ,  OpenAIApi } = require("openai");
+const authJwt = require("./auth/authMiddelware");
 
 
 app.use(cors());
 app.use(express.json());
 app.use("/files", express.static(__dirname + "/files"));
 app.use(express.urlencoded({ extended: true }));
-
-app.use("/classess", classRouter);
 app.use("/User", UserRouter);
+// app.use(authJwt.verifyToken)
+app.use("/classess", authJwt.verifyToken, classRouter);
+
 app.use("/courses", courseRouter);
 
 // console.log(process.env.API_Key)
