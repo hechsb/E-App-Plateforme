@@ -37,6 +37,11 @@ export class ClassesComponent {
 
   }
 
+  modal: boolean = false
+
+  toggle() {
+    this.modal = !this.modal
+  }
 
 
 
@@ -45,7 +50,7 @@ export class ClassesComponent {
     this.classService.joinClass(classID, userID)
       .subscribe(
         (response) => {
-          alert("Your request was sent to the admin.");
+          this.toggle()
           this.getClasses()
         },
         (error) => {

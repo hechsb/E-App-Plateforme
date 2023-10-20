@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TodoListService } from '../../../Services/todo-list.service'
+
 
 
 @Component({
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class UserNavBarComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private TodoListService: TodoListService) { }
 
   log(something: any): void {
     console.log(something)
@@ -23,6 +25,7 @@ export class UserNavBarComponent {
 
   logout(): void {
     localStorage.clear()
+    this.TodoListService.clearTodo()
     this.router.navigate(['/']);
 
   }

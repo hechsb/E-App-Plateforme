@@ -17,6 +17,8 @@ import { AuthGuard } from 'src/Services/auth-guard.service';
 import { AuthService } from 'src/Services/auth.service';
 import { HomeComponent } from './user/home/home.component';
 import { CoursesComponent } from './user/courses/courses.component';
+import { TodoListComponent } from './user/todo-list/todo-list.component';
+import { TodoListService } from 'src/Services/todo-list.service'
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { CoursesComponent } from './user/courses/courses.component';
     SignUpComponent,
     HomeComponent,
     CoursesComponent,
+    TodoListComponent,
 
   ],
   imports: [
@@ -48,6 +51,7 @@ import { CoursesComponent } from './user/courses/courses.component';
     },
     AuthGuard,
     AuthService,
+    TodoListService
   ],
   bootstrap: [AppComponent]
 })

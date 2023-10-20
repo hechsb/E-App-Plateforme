@@ -15,7 +15,7 @@
 
     </div>
     <div class="class-container grid grid-cols-3 gap-4" style="margin-left: 5%; width: 80%;">
-      <ng-container>
+      <ng-container *ngIf="classes.length > 0">
         <div *ngFor="let class of filteredClasses" class="class-card">
           <a routerLink="/student-courses/{{class.id}}">
             <div
@@ -30,17 +30,18 @@
           </a>
         </div>
       </ng-container>
-      <ng-template ngIf(!classes.length)>
-        <div>
-          <h1 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-            Your classes
-          </h1>
-          <p class="no-courses-message">
-            You are not enrolled in any courses yet. If you want to see our available click here
-            <a>Classes</a>
-          </p>
-        </div>
-      </ng-template>
+
+      <div *ngIf="classes.length === 0">
+        <h1 class="text-2xl font-semibold dark:text-gray-100"
+          style="color: navy; font-weight: bold; font-size: 40px; margin-bottom: 10px;">
+          Your Classes:
+        </h1>
+        <p class="no-courses-message" style="width: 5000px; font-size: 30px; color: black;">
+          You are not enrolled in any courses yet. If you want to see our available <a routerLink="/student-classes"
+            style="text-decoration: underline; color: blue;">
+            click here! </a>
+        </p>
+      </div>
     </div>
   </div>
 </div>
