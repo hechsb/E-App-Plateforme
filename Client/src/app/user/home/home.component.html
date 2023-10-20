@@ -2,21 +2,21 @@
 <div>
   <div>
     <div>
-      <form class="flex items-center">
-        <label for="search" class="sr-only">
-          Search
-        </label>
-        <div class="relative w-full xl:w-96">
-          <input type="text" id="search"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full px-4 py-2.5 dark-bg-gray-700 dark-border-gray-600 dark-placeholder-gray-400 dark-text-white dark-focus:ring-orange-500 dark-focus:border-orange-500"
-            placeholder="Search for a class..." required
-            style="position: relative; left: 250%; transform: translate(-50%, -120%);" />
-        </div>
-      </form>
+
+      <label for="search" class="sr-only">
+        Search
+      </label>
+      <div class="relative w-full xl:w-96">
+        <input type="text" id="search" [(ngModel)]="searchQuery"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full px-4 py-2.5 dark-bg-gray-700 dark-border-gray-600 dark-placeholder-gray-400 dark-text-white dark-focus:ring-orange-500 dark-focus:border-orange-500"
+          placeholder="Search for a class..." required
+          style="position: relative; left: 250%; transform: translate(-50%, -120%);" (ngModelChange)="updateFilter()" />
+      </div>
+
     </div>
     <div class="class-container grid grid-cols-3 gap-4" style="margin-left: 5%; width: 80%;">
       <ng-container>
-        <div *ngFor="let class of classes" class="class-card">
+        <div *ngFor="let class of filteredClasses" class="class-card">
           <a routerLink="/student-courses/{{class.id}}">
             <div
               class="flex items-center bg-white border border-gray-500 rounded-lg hover-bg-gray-100 dark-border-gray-1000 dark-bg-gray-800 dark-hover-bg-gray-700">

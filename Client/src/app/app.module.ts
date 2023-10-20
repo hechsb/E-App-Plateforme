@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import Rea
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { HttpClientModule ,HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TestRedirectionUserComponent } from './user/test-redirection-user/test-redirection-user.component';
 import { TestRedirectionAdminComponent } from './admin/test-redirection-admin/test-redirection-admin.component';
 import { UserComponent } from './user/user.component';
@@ -29,7 +29,8 @@ import { CoursesComponent } from './user/courses/courses.component';
     ClassesComponent,
     SignUpComponent,
     HomeComponent,
-    CoursesComponent
+    CoursesComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -37,7 +38,7 @@ import { CoursesComponent } from './user/courses/courses.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
+
   ],
   providers: [
     {
@@ -47,7 +48,7 @@ import { CoursesComponent } from './user/courses/courses.component';
     },
     AuthGuard,
     AuthService,
-  ],    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
