@@ -15,6 +15,8 @@ export class ClassesComponent {
 
   filteredClasses: Class[] = this.classes;
 
+  joinButton: string = localStorage.getItem('join') || 'Join'
+
   constructor(private classService: ClassService, private route: ActivatedRoute) {
 
   }
@@ -37,6 +39,7 @@ export class ClassesComponent {
       .subscribe(
         (response) => {
           alert("Your request was sent to the admin.");
+          localStorage.setItem(`join ${classID}-${userID}`, 'Request sent!')
           this.getClasses()
         },
         (error) => {

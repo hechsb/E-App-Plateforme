@@ -1,5 +1,5 @@
 const { Class, User, StudentClasses, sequelize } = require("../Database");
-
+const { Op } = require("sequelize");
 module.exports = {
   getAllClasses: async (req, res) => {
     try {
@@ -11,16 +11,36 @@ module.exports = {
     }
   },
   getAllInactiveClasses: async (req, res) => {
+    const userId = req.userId
     try {
       const classRooms = await Class.findAll({
-        where: {
-          status: 'inactive'
-        }
+        where: sequelize.literal(`
+        id NOT IN (
+          SELECT classId
+          FROM StudentClasses
+          WHERE studentId = ${userId}
+        )
+      `),
       });
       res.status(200).json(classRooms);
     } catch (error) {
       console.log(error);
       res.status(500).send("An error occurred: " + error.message);
+    }
+  },
+  getCartItems: async (req, res) => {
+    const { id } = req.params
+    try {
+      const result = await Product.findAll({
+        include: {
+          model: User,
+          where: { id: id },
+        },
+      });
+      res.status(200).json(result);
+    } catch (error) {
+      console.log(error)
+      res.status(500).send(error)
     }
   },
   getOneClass: async (req, res) => {
@@ -85,7 +105,7 @@ module.exports = {
   },
   addUserToClass: async (req, res) => {
     const classId = req.params.classId;
-    const userId = req.params.userId;
+    const userId = req.userId
 
     try {
       const classRoom = await Class.findByPk(classId);
@@ -100,7 +120,6 @@ module.exports = {
       }
 
       await classRoom.addUser(user, { status: 'pending' });
-      await classRoom.update({ status: 'pending' })
       res.status(201).send('User request to join the class is pending');
     } catch (error) {
       console.error(error);
@@ -137,10 +156,10 @@ module.exports = {
 
   //for accepted users  
   getUserEnrolledClasses: async (req, res) => {
-    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     const userId = req.userId
 
     try {
+
       const enrolledClasses = await StudentClasses.findAll({
         where: {
           studentId: userId,

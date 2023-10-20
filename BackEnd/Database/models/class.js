@@ -7,13 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     image: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    status: {
-      type: DataTypes.ENUM("pending", "accepted", "rejected", "inactive"),
-      allowNull: false,
-      defaultValue: "inactive"
-
     }
+
   }, {
 
   });

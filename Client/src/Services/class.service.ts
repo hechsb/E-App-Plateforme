@@ -3,7 +3,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Class } from '../app/class'
-import { User } from '../app/user'
 
 
 
@@ -18,7 +17,7 @@ export class ClassService {
   constructor(private http: HttpClient) {
   }
 
-  private allPendingClassesUrl = 'http://localhost:3000/classess/getAllInactiveClasses';
+  private allPendingClassesUrl = 'http://localhost:3000/classess/inactiveClasses';
   private enrolledClassesUrl = 'http://localhost:3000/classess/userAcceptedClass'
   private joinClassUrl = `http://localhost:3000/classess`
 
