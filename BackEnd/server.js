@@ -6,7 +6,7 @@ const classRouter = require("./routes/class");
 const UserRouter = require("./routes/user");
 const courseRouter = require("./routes/course");
 require("dotenv").config();
-const { OpenAI ,  OpenAIApi } = require("openai");
+const { OpenAI, OpenAIApi } = require("openai");
 const authJwt = require("./auth/authMiddelware");
 
 

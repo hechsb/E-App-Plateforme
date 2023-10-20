@@ -18,7 +18,7 @@ export class HomeComponent {
 
   getClasses(): void {
     this.classService.getEnrolledClasses()
-      .subscribe(classes => this.classes = classes)
+      .subscribe(classes => { this.classes = classes; console.log('jawhar') })
   }
 
   ngOnInit(): void {
