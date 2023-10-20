@@ -3,7 +3,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Class } from '../app/class'
-import { User } from '../app/user'
 
 
 
@@ -18,8 +17,8 @@ export class ClassService {
   constructor(private http: HttpClient) {
   }
 
-  private allClassesUrl = 'http://localhost:3000/classess/getAll';
-  private enrolledClassesUrl = `http://localhost:3000/classess/userAcceptedClass/${2}`
+  private allPendingClassesUrl = 'http://localhost:3000/classess/inactiveClasses';
+  private enrolledClassesUrl = 'http://localhost:3000/classess/userAcceptedClass'
   private joinClassUrl = `http://localhost:3000/classess`
 
   httpOptions = {
@@ -35,7 +34,7 @@ export class ClassService {
   }
 
   getClasses(): Observable<Class[]> {
-    return this.http.get<Class[]>(this.allClassesUrl)
+    return this.http.get<Class[]>(this.allPendingClassesUrl)
       .pipe(
         catchError(this.handleError<Class[]>('getClasses', []))
       );
@@ -45,7 +44,7 @@ export class ClassService {
     return this.http.get<Class[]>(this.enrolledClassesUrl)
       .pipe(
         tap(_ => this.log(this.enrolledClassesUrl)),
-        catchError(this.handleError<Class[]>('getClasses', []))
+        catchError(this.handleError<Class[]>('getEnrolledClasses', []))
       )
   }
 

@@ -1,5 +1,5 @@
-const { Class, User, StudentClasses } = require("../Database");
-
+const { Class, User, StudentClasses, sequelize } = require("../Database");
+const { Op } = require("sequelize");
 module.exports = {
   getAllClasses: async (req, res) => {
     try {
@@ -8,6 +8,39 @@ module.exports = {
     } catch (error) {
       console.log(error);
       res.status(500).send("An error occurred: " + error.message);
+    }
+  },
+  getAllInactiveClasses: async (req, res) => {
+    const userId = req.userId
+    try {
+      const classRooms = await Class.findAll({
+        where: sequelize.literal(`
+        id NOT IN (
+          SELECT classId
+          FROM StudentClasses
+          WHERE studentId = ${userId}
+        )
+      `),
+      });
+      res.status(200).json(classRooms);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("An error occurred: " + error.message);
+    }
+  },
+  getCartItems: async (req, res) => {
+    const { id } = req.params
+    try {
+      const result = await Product.findAll({
+        include: {
+          model: User,
+          where: { id: id },
+        },
+      });
+      res.status(200).json(result);
+    } catch (error) {
+      console.log(error)
+      res.status(500).send(error)
     }
   },
   getOneClass: async (req, res) => {
@@ -72,7 +105,7 @@ module.exports = {
   },
   addUserToClass: async (req, res) => {
     const classId = req.params.classId;
-    const userId = req.params.userId;
+    const userId = req.userId
 
     try {
       const classRoom = await Class.findByPk(classId);
@@ -123,9 +156,10 @@ module.exports = {
 
   //for accepted users  
   getUserEnrolledClasses: async (req, res) => {
-    const userId = req.params.userId;
+    const userId = req.userId
 
     try {
+
       const enrolledClasses = await StudentClasses.findAll({
         where: {
           studentId: userId,
@@ -162,12 +196,13 @@ module.exports = {
         return res.status(404).send("User not found");
       }
 
-      await StudentClasses.update({ status: "rejected" }, {
+      await StudentClasses.destroy({
         where: {
           classId: classId,
           studentId: userId
         }
       });
+      await classRoom.update({ status: "inactive" })
       res.status(200).send("User's request has been rejected");
     } catch (error) {
       console.error(error);
@@ -188,6 +223,6 @@ module.exports = {
       console.error(error);
       res.status(500).send("An error occurred: " + error.message);
     }
-  }
+  },
 
 };
