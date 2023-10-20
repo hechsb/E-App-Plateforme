@@ -10,6 +10,8 @@ import { TestRedirectionAdminComponent } from './admin/test-redirection-admin/te
 import { UserComponent } from './user/user.component';
 import { UserNavBarComponent } from './user/user-nav-bar/user-nav-bar.component';
 import { ClassesComponent } from './user/classes/classes.component';
+import { HomeComponent } from './user/home/home.component';
+import { CoursesComponent } from './user/courses/courses.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ClassesComponent } from './user/classes/classes.component';
 
     UserComponent,
     UserNavBarComponent,
-    ClassesComponent
+    ClassesComponent,
+    HomeComponent,
+    CoursesComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +32,9 @@ import { ClassesComponent } from './user/classes/classes.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
-    
+
   ],
-  providers: [],    
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

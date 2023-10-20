@@ -1,34 +1,45 @@
 import { Injectable } from '@angular/core';
-import { HttpClient , HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { User } from '../app/user'
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient ,private router: Router) { }
+
+
+  constructor(private http: HttpClient, private router: Router) { }
+
+
+
+
+
+
   //logging user 
-  logUser(inputs:{email :string,password:string}){
-    this.http.post<{name:string , token:string, user:any }>(
+  logUser(inputs: { email: string, password: string }) {
+    this.http.post<{ name: string, token: string, user: any }>(
       'http://localhost:3000/User/logUser',
       inputs
-    ).subscribe((response)=>{
+    ).subscribe((response) => {
       localStorage.setItem("token", response.token)
-      console.log(response.user)
+      console.log(response)
       if (response.user.role === "admin") {
         console.log("hello admin");
         this.router.navigate(['adminPage']);
       } else {
         console.log("hello from user");
-        this.router.navigate(['userPage']);
+        this.router.navigate(['student-home']);
         console.log("cc")
       }
     })
   }
 
   //adding a user
-  signUp(){
+  signUp() {
 
   }
+
 }
