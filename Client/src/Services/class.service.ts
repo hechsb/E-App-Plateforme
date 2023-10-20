@@ -19,7 +19,7 @@ export class ClassService {
   }
 
   private allPendingClassesUrl = 'http://localhost:3000/classess/getAllInactiveClasses';
-  private enrolledClassesUrl = `http://localhost:3000/classess/userAcceptedClass/${2}`
+  private enrolledClassesUrl = 'http://localhost:3000/classess/userAcceptedClass'
   private joinClassUrl = `http://localhost:3000/classess`
 
   httpOptions = {
@@ -45,7 +45,7 @@ export class ClassService {
     return this.http.get<Class[]>(this.enrolledClassesUrl)
       .pipe(
         tap(_ => this.log(this.enrolledClassesUrl)),
-        catchError(this.handleError<Class[]>('getClasses', []))
+        catchError(this.handleError<Class[]>('getEnrolledClasses', []))
       )
   }
 

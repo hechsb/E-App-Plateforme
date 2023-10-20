@@ -27,6 +27,6 @@ router.put("/accept/:classId/:userId", acceptUserRequest);
 router.put("/reject/:classId/:userId", rejectUserRequest);
 router.get("/getPendingStudentClasses", getAllPendingStudentClasses);
 router.get("/:classId", getOneClass);
-router.get("/userAcceptedClass/:userId", getUserEnrolledClasses)
+router.get("/userAcceptedClass", getUserEnrolledClasses)
 
 module.exports = router;

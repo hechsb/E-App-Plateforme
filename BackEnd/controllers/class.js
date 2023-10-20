@@ -137,7 +137,8 @@ module.exports = {
 
   //for accepted users  
   getUserEnrolledClasses: async (req, res) => {
-    const userId = req.params.userId;
+    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    const userId = req.userId
 
     try {
       const enrolledClasses = await StudentClasses.findAll({
