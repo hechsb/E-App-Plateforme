@@ -12,6 +12,7 @@ import { CoursesComponent } from './user/courses/courses.component'
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminClassesComponent } from './admin/admin-classes/admin-classes.component';
 import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component'; 
+import { AdminAddCourseComponent } from './admin/admin-add-course/admin-add-course.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'student-classes', component: ClassesComponent ,canActivate: [AuthGuard], data: { roles: ['user'] } },
   { path: 'student-courses/:id', component: CoursesComponent },
   {path : 'adminUsers' , component :AdminUsersComponent},
-  {path : 'admin-classes', component:AdminClassesComponent}
+  {path : 'admin-classes', component:AdminClassesComponent},
+  {path : 'admin-add-course', component:AdminAddCourseComponent}
   // {path:'adminPage', component : AdminClassesComponent}
 
 ];

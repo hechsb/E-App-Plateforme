@@ -1,8 +1,7 @@
 
-import { Component, OnInit } from '@angular/core';
+import { NumberFormatStyle } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
-import {AdminClassService} from '../../../Services/admin-classes.service'
-import { AdminClasses } from 'src/app/admin-classes';
 
 @Component({
   selector: 'app-classes',
@@ -10,5 +9,18 @@ import { AdminClasses } from 'src/app/admin-classes';
   styleUrls: ['./admin-classes.component.css'],
 })
 export class AdminClassesComponent  {
+  
+  @Input() filteredClasses: [] = []; 
+
+  isModalOpen: boolean = false;
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+  
 
 }

@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { CoursesService } from 'src/Services/courses.service';
+import {Course} from '../../course'
 
 @Component({
   selector: 'app-admin-add-course',
@@ -8,13 +11,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./admin-add-course.component.css']
 })
 export class AdminAddCourseComponent implements OnInit {
-  classId: string | undefined;
-  courses: any[] = [];
+  classId: Number | undefined;
+  courses: CoursesService[] = [];
   name: string = '';
   file: File | null = null;
   errorMessage: string = '';
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -56,6 +59,7 @@ export class AdminAddCourseComponent implements OnInit {
         }
       });
   }
+ 
 
   fetchCourses(): void {
     this.http
