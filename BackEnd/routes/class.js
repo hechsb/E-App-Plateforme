@@ -17,13 +17,13 @@ const {
 
 router.get("/getAll", getAllClasses);
 
-router.post("/", addClass);
-router.post("/:classId/:userId", addUserToClass);
-router.put("/:classId", updateClass);
-router.delete("/:classId", deleteClass);
-router.put("/accept/:classId/:userId", acceptUserRequest)
-router.get("/getPendingStudentClasses", getAllPendingStudentClasses);
-router.get("/:classId", getOneClass);
-router.get("/userAcceptedClass/:userId", getUserEnrolledClasses)
+router.post("/",authJwt.verifyToken, addClass);
+router.post("/:classId/:userId",authJwt.verifyToken, addUserToClass);
+router.put("/:classId",authJwt.verifyToken, updateClass);
+router.delete("/:classId",authJwt.verifyToken, deleteClass);
+router.put("/accept/:classId/:userId",authJwt.verifyToken, acceptUserRequest)
+router.get("/getPendingStudentClasses",authJwt.verifyToken, getAllPendingStudentClasses);
+router.get("/:classId", authJwt.verifyToken,getOneClass);
+router.get("/userAcceptedClass/:userId",authJwt.verifyToken, getUserEnrolledClasses)
 
 module.exports = router;
