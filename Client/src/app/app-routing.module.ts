@@ -17,8 +17,8 @@ const routes: Routes = [
   { path: 'classes', component: ClassesComponent ,canActivate: [AuthGuard], data: { roles: ['user'] } },
   { path: 'signup', component: SignUpComponent },
   { path: 'signin', component: SignInComponent },
-  { path: 'student-home', component: HomeComponent },
-  { path: 'student-classes', component: ClassesComponent },
+  { path: 'student-home', component: HomeComponent ,canActivate: [AuthGuard], data: { roles: ['user'] }},
+  { path: 'student-classes', component: ClassesComponent ,canActivate: [AuthGuard], data: { roles: ['user'] } },
   { path: 'student-courses/:id', component: CoursesComponent }
 
 ];
