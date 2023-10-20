@@ -1,37 +1,38 @@
 <app-user-nav-bar></app-user-nav-bar>
 <div>
-    <div>
-        <form class="flex items-center">
-            <label for="search" class="sr-only">
-                Search
-            </label>
-            <div class="relative w-full xl:w-96">
-                <input type="text" id="search"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full px-4 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark-placeholder-gray-400 dark-text-white dark:focus:ring-orange-500 dark:focus:border-orange-500"
-                    placeholder="Search for a class..." required
-                    style="position: relative; left: 300%; transform: translate(-50%, -120%);" />
-            </div>
-        </form>
-    </div>
-    <div class="class-container grid grid-cols-3 gap-4" style="margin-left: 5%; width: 80%;">
-        <div class="class-card" *ngFor="let class of classes">
-            <a href="#">
-                <div
-                    class="flex items-center bg-white border border-gray-500 rounded-lg hover:bg-gray-100 dark:border-gray-1000 dark:bg-gray-800 dark:hover:bg-gray-700">
-                    <img class="object-cover w-full rounded-t-lg h-96 md:h-48 md:w-48" [src]="class.image" alt="" />
-                    <div class="flex flex-col justify-between p-4 leading-normal">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            {{class.name}}
-                        </h5>
-                        <button
-                            class="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">
-                            Join
-                        </button>
-                    </div>
-                </div>
-            </a>
+  <div>
+    <form class="flex items-center">
+      <label for="search" class="sr-only">
+        Search
+      </label>
+      <div class="relative w-full xl:w-96">
+        <input type="text" id="search"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full px-4 py-2.5 dark:bg-white-700 dark:border-gray-600 dark-placeholder-gray-400 dark-text-white dark:focus:ring-orange-500 dark:focus:border-orange-500"
+          placeholder="Search for a class..." required
+          style="position: relative; left: 250%; transform: translate(-50%, -120%);" />
+      </div>
+    </form>
+  </div>
+  <div class="class-container grid grid-cols-3 gap-4" style="margin-left: 5%; width: 80%;">
+    <div class="class-card" *ngFor="let class of classes">
+      <a>
+        <div
+          class="flex items-center bg-white border border-gray-500 rounded-lg hover:bg-gray-100 dark:border-gray-1000 dark:bg-gray-800 dark:hover:bg-gray-700">
+          <img class="object-cover w-full rounded-t-lg h-96 md:h-48 md:w-48" [src]="class.image" alt="" />
+          <div class="flex flex-col justify-between p-4 leading-normal">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
+              {{class.name}}
+            </h5>
+            <button
+              class="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
+              (click)="joinClass(class.id, 2)">
+              Join
+            </button>
+          </div>
         </div>
+      </a>
     </div>
+  </div>
 </div>
 
 
