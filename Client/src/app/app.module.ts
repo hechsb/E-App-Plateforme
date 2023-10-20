@@ -19,6 +19,7 @@ import { HomeComponent } from './user/home/home.component';
 import { CoursesComponent } from './user/courses/courses.component';
 import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { AdminClassesComponent } from './admin/admin-classes/admin-classes.component';
 
 
 
@@ -35,7 +36,8 @@ import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
     HomeComponent,
     CoursesComponent,
     AdminNavbarComponent,
-    AdminUsersComponent
+    AdminUsersComponent,
+    AdminClassesComponent
   ],
   
   imports: [

@@ -1,2 +1,54 @@
-<h1>admin classes</h1>
-   
+<app-admin-navbar></app-admin-navbar>
+
+<div class="px-3 py-4 flex" [style.background-color]="'#D3D3D3'" [style.flex]="1" [style.overflow]="'auto'">
+  <button
+    class="text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-orange-800 shadow-lg shadow-orange-500/50 dark:shadow-lg dark:shadow-orange-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+    type="button"
+    [style.height]="'150px'" [style.position]="'relative'" [style.top]="'20%'" [style.left]="'10%'" [style.transform]="'translate(-50%, -50%)'">
+    Add classes
+  </button>
+
+  <div id="authentication-modal" [style.position]="'absolute'" [style.left]="'750px'" [style.top]="'150px'" class="fixed flex">
+    <div class="w-full max-w-md">
+      <div class="bg-white rounded-lg shadow dark-bg-gray-700">
+        <button type="button" class="absolute top-18 right-1.5 text-gray-400 bg-transparent hover-bg-gray-200 hover-text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark-hover-bg-gray-600 dark-hover-text-white" data-modal-hide="authentication-modal">
+          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+          </svg>
+          <span class="sr-only">Close modal</span>
+        </button>
+
+        <h3 class="mb-4 text-xl font-medium text-gray-900 dark-text-white">Your Modal Title</h3>
+
+        <div class="md:col-span-1">
+          <div class="px-4 sm:px-0"></div>
+        </div>
+
+        <div class="mt-5 md:mt-0 md:col-span-2">
+          <form>
+            <!-- Your form contents go here -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="class-list" [style.height]="'150px'" [style.position]="'relative'" [style.top]="'20%'" [style.left]="'10%'" [style.transform]="'translate(-50%, -50%)'">
+    <!-- Your class list content goes here -->
+  </div>
+
+  <div class="class-list">
+    <div class="class-list" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; position: absolute; top: 210px; right: 50px;">
+      <!-- More class list content goes here -->
+    </div>
+  </div>
+
+  <form class="flex items-center" style="height: 150px; position: relative; top: 1%; left: 34%; transform: translate(-50%, -50%);">
+    <!-- Your form for searching goes here -->
+    
+  </form>
+
+  <div class="grid grid-cols-3 gap-4" style="margin-right: 100px;">
+    <!-- Loop through and display your class information here -->
+  </div>
+</div>

@@ -12,7 +12,7 @@ import { CoursesComponent } from './user/courses/courses.component'
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminClassesComponent } from './admin/admin-classes/admin-classes.component';
 import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component'; 
-import { RouterLinkActive } from '@angular/router';
+
 
 const routes: Routes = [
   { path: '', component: SignInComponent },

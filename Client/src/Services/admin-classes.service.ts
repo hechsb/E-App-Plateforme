@@ -22,9 +22,9 @@ export class AdminClassService{
       }
     
     
-      getAllProduct(){
+      getAllClasses(){
     
-        return this.http.get(this.endpoint + 'product/getall'); 
+        return this.http.get(this.endpoint + 'classes/getall'); 
     
       }
     
