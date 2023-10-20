@@ -22,6 +22,7 @@ export class UserComponent {
       .subscribe(classes => this.classes = classes);
   }
 
+
   ngOnInit(): void {
     this.getClasses()
   }

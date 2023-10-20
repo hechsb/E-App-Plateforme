@@ -1,16 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TestRedirectionUserComponent } from './user/test-redirection-user/test-redirection-user.component';
 import { TestRedirectionAdminComponent } from './admin/test-redirection-admin/test-redirection-admin.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { UserComponent } from './user/user.component'
 import { ClassesComponent } from './user/classes/classes.component';
+import { UserNavBarComponent } from './user/user-nav-bar/user-nav-bar.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { AuthGuard } from 'src/Services/auth-guard.service';
+import { HomeComponent } from './user/home/home.component'
+import { CoursesComponent } from './user/courses/courses.component'
 const routes: Routes = [
-  {path : '', component : SignInComponent},
-  { path: 'userPage', component: TestRedirectionUserComponent },
-  {path : 'adminPage ', component : TestRedirectionAdminComponent },
+  { path: '', component: SignInComponent },
+  { path: 'adminPage', component: TestRedirectionAdminComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
+  { path: 'userPage', component: UserNavBarComponent, canActivate: [AuthGuard], data: { roles: ['user'] } },
   { path: 'user', component: UserComponent },
- { path: 'classes', component: ClassesComponent }
+  { path: 'classes', component: ClassesComponent ,canActivate: [AuthGuard], data: { roles: ['user'] } },
+  { path: 'signup', component: SignUpComponent },
+  { path: 'signin', component: SignInComponent },
+  { path: 'student-home', component: HomeComponent },
+  { path: 'student-classes', component: ClassesComponent },
+  { path: 'student-courses/:id', component: CoursesComponent }
 
 ];
 
