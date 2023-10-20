@@ -1,18 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-<<<<<<< HEAD
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { AddCourseComponent } from './admin-add-course/admin-add-course.component';
-
-
-
-
-
-
-=======
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,44 +9,48 @@ import { TestRedirectionUserComponent } from './user/test-redirection-user/test-
 import { TestRedirectionAdminComponent } from './admin/test-redirection-admin/test-redirection-admin.component';
 import { UserComponent } from './user/user.component';
 import { UserNavBarComponent } from './user/user-nav-bar/user-nav-bar.component';
-import { ClassesComponent } from './user/classes/classes.component';
->>>>>>> 67fd9288872c7f5a52fee0574e837112d7a51e8f
+import { AdminClassesComponent } from './admin/admin-classes/admin-classes.component';
+import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
+import { AdminPendingUserComponent } from './admin/admin-pending-user/admin-pending-user.component';
+import { AdminSidebarComponent } from './admin/admin-sidebar/admin-sidebar.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { AdminAddCourseComponent } from './admin/admin-add-course/admin-add-course.component';
+import { AdminCoursesComponent } from './admin/admin-courses/admin-courses.component';
+import { AdminCourseComponent } from './admin/admin-course/admin-course.component';
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-<<<<<<< HEAD
-    AddCourseComponent,
-
-    
-  
-=======
     SignInComponent,
     TestRedirectionUserComponent,
     TestRedirectionAdminComponent,
-
     UserComponent,
     UserNavBarComponent,
-    ClassesComponent
->>>>>>> 67fd9288872c7f5a52fee0574e837112d7a51e8f
+    AdminClassesComponent,
+    AdminNavbarComponent,
+    AdminPendingUserComponent,
+    AdminSidebarComponent,
+    AdminUsersComponent,
+    AdminAddCourseComponent,
+    AdminCoursesComponent,
+    AdminCourseComponent
+
+
+ 
   ],
   
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-<<<<<<< HEAD
-    HttpClientModule
-  ],
-    
-  providers: [],
-=======
     ReactiveFormsModule,
     HttpClientModule
     
   ],
   providers: [],    
->>>>>>> 67fd9288872c7f5a52fee0574e837112d7a51e8f
   bootstrap: [AppComponent]
 })
 

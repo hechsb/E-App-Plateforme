@@ -19,7 +19,7 @@ app.use("/User", UserRouter);
 app.use("/courses", courseRouter);
 
 // console.log(process.env.API_Key)
-//Aiii 
+// Aiii 
 
 
 // const openai = new OpenAI({
