@@ -2,8 +2,12 @@
 import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt'; // Import 
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { User } from '../app/user'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -56,4 +60,5 @@ export class AuthService {
       this.router.navigate(['signin']);
     });
   }
+
 }

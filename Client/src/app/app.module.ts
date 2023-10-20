@@ -15,6 +15,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './auth.interceptor';
 import { AuthGuard } from 'src/Services/auth-guard.service';
 import { AuthService } from 'src/Services/auth.service';
+import { HomeComponent } from './user/home/home.component';
+import { CoursesComponent } from './user/courses/courses.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { AuthService } from 'src/Services/auth.service';
     UserComponent,
     UserNavBarComponent,
     ClassesComponent,
-    SignUpComponent
+    SignUpComponent,
+    HomeComponent,
+    CoursesComponent
   ],
   imports: [
     BrowserModule,

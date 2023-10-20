@@ -3,6 +3,8 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Class } from '../app/class'
+import { User } from '../app/user'
+
 
 
 
@@ -11,10 +13,14 @@ import { Class } from '../app/class'
 })
 export class ClassService {
 
+
+
   constructor(private http: HttpClient) {
   }
 
-  private classesUrl = 'http://localhost:3000/classess/getAll';
+  private allClassesUrl = 'http://localhost:3000/classess/getAll';
+  private enrolledClassesUrl = `http://localhost:3000/classess/userAcceptedClass/${2}`
+  private joinClassUrl = `http://localhost:3000/classess`
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -29,11 +35,37 @@ export class ClassService {
   }
 
   getClasses(): Observable<Class[]> {
-    return this.http.get<Class[]>(this.classesUrl)
+    return this.http.get<Class[]>(this.allClassesUrl)
       .pipe(
         catchError(this.handleError<Class[]>('getClasses', []))
       );
   }
+
+  getEnrolledClasses(): Observable<Class[]> {
+    return this.http.get<Class[]>(this.enrolledClassesUrl)
+      .pipe(
+        tap(_ => this.log(this.enrolledClassesUrl)),
+        catchError(this.handleError<Class[]>('getClasses', []))
+      )
+  }
+
+  joinClass(classID: number, userID: number) {
+    const url = `${this.joinClassUrl}/${classID}/${userID}`
+    return this.http.post(url, null, this.httpOptions)
+      .pipe(
+        tap(_ => this.log(url)),
+        catchError(this.handleError('joinClass', []))
+      )
+  }
+
+
+
+  log(something: any) {
+    console.log(something)
+
+  }
+
+
 
 
 

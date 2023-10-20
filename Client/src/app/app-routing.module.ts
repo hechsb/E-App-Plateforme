@@ -7,6 +7,8 @@ import { ClassesComponent } from './user/classes/classes.component';
 import { UserNavBarComponent } from './user/user-nav-bar/user-nav-bar.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AuthGuard } from 'src/Services/auth-guard.service';
+import { HomeComponent } from './user/home/home.component'
+import { CoursesComponent } from './user/courses/courses.component'
 const routes: Routes = [
   { path: '', component: SignInComponent },
   { path: 'adminPage', component: TestRedirectionAdminComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
@@ -15,6 +17,10 @@ const routes: Routes = [
   { path: 'classes', component: ClassesComponent ,canActivate: [AuthGuard], data: { roles: ['user'] } },
   { path: 'signup', component: SignUpComponent },
   { path: 'signin', component: SignInComponent },
+  { path: 'student-home', component: HomeComponent },
+  { path: 'student-classes', component: ClassesComponent },
+  { path: 'student-courses/:id', component: CoursesComponent }
+
 ];
 
 @NgModule({
