@@ -18,7 +18,7 @@ export class ClassService {
   constructor(private http: HttpClient) {
   }
 
-  private allClassesUrl = 'http://localhost:3000/classess/getAll';
+  private allPendingClassesUrl = 'http://localhost:3000/classess/getAllInactiveClasses';
   private enrolledClassesUrl = `http://localhost:3000/classess/userAcceptedClass/${2}`
   private joinClassUrl = `http://localhost:3000/classess`
 
@@ -35,7 +35,7 @@ export class ClassService {
   }
 
   getClasses(): Observable<Class[]> {
-    return this.http.get<Class[]>(this.allClassesUrl)
+    return this.http.get<Class[]>(this.allPendingClassesUrl)
       .pipe(
         catchError(this.handleError<Class[]>('getClasses', []))
       );

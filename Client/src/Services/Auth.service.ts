@@ -12,7 +12,7 @@ import { User } from '../app/user'
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
   private tokenSubject = new Subject<void>();
   private jwtHelper = new JwtHelperService(); // Create an instance of JwtHelperService
   isLoggedIn(): boolean {
@@ -34,7 +34,7 @@ export class AuthService {
       inputs
     ).subscribe((response) => {
       localStorage.setItem('token', response.token);
-      this.tokenSubject.next(); 
+      this.tokenSubject.next();
       console.log(localStorage.getItem("token"))
       console.log(response.user);
       if (response.user.role === 'admin') {
@@ -42,13 +42,13 @@ export class AuthService {
         this.router.navigate(['adminPage']);
       } else {
         console.log('Hello from user');
-        this.router.navigate(['userPage']);
+        this.router.navigate(['student-home']);
       }
     });
   }
-  
 
-  getToken(){
+
+  getToken() {
     return localStorage.getItem("token")
   }
 

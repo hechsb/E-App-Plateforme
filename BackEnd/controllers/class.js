@@ -1,9 +1,22 @@
-const { Class, User, StudentClasses } = require("../Database");
+const { Class, User, StudentClasses, sequelize } = require("../Database");
 
 module.exports = {
   getAllClasses: async (req, res) => {
     try {
       const classRooms = await Class.findAll();
+      res.status(200).json(classRooms);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("An error occurred: " + error.message);
+    }
+  },
+  getAllInactiveClasses: async (req, res) => {
+    try {
+      const classRooms = await Class.findAll({
+        where: {
+          status: 'inactive'
+        }
+      });
       res.status(200).json(classRooms);
     } catch (error) {
       console.log(error);
@@ -87,6 +100,7 @@ module.exports = {
       }
 
       await classRoom.addUser(user, { status: 'pending' });
+      await classRoom.update({ status: 'pending' })
       res.status(201).send('User request to join the class is pending');
     } catch (error) {
       console.error(error);
@@ -162,12 +176,13 @@ module.exports = {
         return res.status(404).send("User not found");
       }
 
-      await StudentClasses.update({ status: "rejected" }, {
+      await StudentClasses.destroy({
         where: {
           classId: classId,
           studentId: userId
         }
       });
+      await classRoom.update({ status: "inactive" })
       res.status(200).send("User's request has been rejected");
     } catch (error) {
       console.error(error);
@@ -188,6 +203,6 @@ module.exports = {
       console.error(error);
       res.status(500).send("An error occurred: " + error.message);
     }
-  }
+  },
 
 };

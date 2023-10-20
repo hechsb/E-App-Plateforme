@@ -13,7 +13,7 @@ export class ClassesComponent {
 
   classes: Class[] = []
 
-  filteredItems: Class[] = this.classes;
+  filteredClasses: Class[] = this.classes;
 
   constructor(private classService: ClassService, private route: ActivatedRoute) {
 
@@ -23,8 +23,11 @@ export class ClassesComponent {
 
   getClasses(): void {
     this.classService.getClasses()
-      .subscribe(classes => this.classes = classes);
+      .subscribe((classes) => { this.classes = classes; this.filteredClasses = classes });
   }
+
+
+
 
 
 
@@ -34,6 +37,7 @@ export class ClassesComponent {
       .subscribe(
         (response) => {
           alert("Your request was sent to the admin.");
+          this.getClasses()
         },
         (error) => {
           console.log(error)
