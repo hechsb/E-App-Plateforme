@@ -17,6 +17,11 @@ import { AuthGuard } from 'src/Services/auth-guard.service';
 import { AuthService } from 'src/Services/auth.service';
 import { HomeComponent } from './user/home/home.component';
 import { CoursesComponent } from './user/courses/courses.component';
+import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { AdminClassesComponent } from './admin/admin-classes/admin-classes.component';
+
+
 
 @NgModule({
   declarations: [
@@ -26,17 +31,23 @@ import { CoursesComponent } from './user/courses/courses.component';
     TestRedirectionAdminComponent,
     UserComponent,
     UserNavBarComponent,
-    ClassesComponent,
+    ClassesComponent, 
     SignUpComponent,
     HomeComponent,
-    CoursesComponent
+    CoursesComponent,
+    AdminNavbarComponent,
+    AdminUsersComponent,
+    AdminClassesComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+   
+   
     
   ],
   providers: [
@@ -50,4 +61,5 @@ import { CoursesComponent } from './user/courses/courses.component';
   ],    
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
