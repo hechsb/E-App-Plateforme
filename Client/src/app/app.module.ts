@@ -17,7 +17,9 @@ import { AuthGuard } from 'src/Services/auth-guard.service';
 import { AuthService } from 'src/Services/auth.service';
 import { HomeComponent } from './user/home/home.component';
 import { CoursesComponent } from './user/courses/courses.component';
-import { RouterModule, Routes } from '@angular/router';
+import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+
 
 
 @NgModule({
@@ -28,10 +30,12 @@ import { RouterModule, Routes } from '@angular/router';
     TestRedirectionAdminComponent,
     UserComponent,
     UserNavBarComponent,
-    ClassesComponent,
+    ClassesComponent, 
     SignUpComponent,
     HomeComponent,
-    CoursesComponent
+    CoursesComponent,
+    AdminNavbarComponent,
+    AdminUsersComponent
   ],
   
   imports: [
