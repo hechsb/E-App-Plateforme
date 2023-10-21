@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { TestRedirectionAdminComponent } from './admin/test-redirection-admin/test-redirection-admin.component';
+import { RouterModule, Routes, mapToCanActivate } from '@angular/router';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { UserComponent } from './user/user.component'
 import { ClassesComponent } from './user/classes/classes.component';
@@ -13,6 +12,7 @@ import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminClassesComponent } from './admin/admin-classes/admin-classes.component';
 import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component'; 
 import { AdminAddCourseComponent } from './admin/admin-add-course/admin-add-course.component';
+import { AdminCourseComponent } from './admin/admin-course/admin-course.component';
 
 
 const routes: Routes = [
@@ -28,7 +28,8 @@ const routes: Routes = [
   { path: 'student-courses/:id', component: CoursesComponent },
   {path : 'adminUsers' , component :AdminUsersComponent},
   {path : 'admin-classes', component:AdminClassesComponent},
-  {path : 'admin-add-course', component:AdminAddCourseComponent}
+  {path : 'admin-add-course', component:AdminAddCourseComponent,canActivate: [AuthGuard], data: {roles: ['admin']}},
+  {path : 'admin-course' , component:AdminCourseComponent}
   // {path:'adminPage', component : AdminClassesComponent}
 
 ];

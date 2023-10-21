@@ -2,17 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { CoursesService } from 'src/Services/courses.service';
-import {Course} from '../../course'
+import { Course } from 'src/app/course';
+
 
 @Component({
   selector: 'app-admin-add-course',
   templateUrl: './admin-add-course.component.html',
   styleUrls: ['./admin-add-course.component.css']
-})
+})  
 export class AdminAddCourseComponent implements OnInit {
   classId: Number | undefined;
-  courses: CoursesService[] = [];
+  courses: Course[] = [];
   name: string = '';
   file: File | null = null;
   errorMessage: string = '';

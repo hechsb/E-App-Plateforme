@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CoursesService } from 'src/Services/courses.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ export class AdminCourseComponent {
   @Input() course: any; // You can create an interface for the course object
 
   updatedName: string = '';
-  updatedFile: File | null = null;
+  updatedFile: File | undefined = undefined;
   isEditMode: boolean = false;
 
   constructor(private http: HttpClient) {}
@@ -31,7 +32,6 @@ export class AdminCourseComponent {
       headers: { 'Content-Type': 'multipart/form-data' }
     }).subscribe(() => {
       this.isEditMode = false;
-      // Call a function to fetch courses (you should have a service for this)
     }, error => {
       console.error('Error updating course:', error);
     });
