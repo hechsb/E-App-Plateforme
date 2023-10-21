@@ -5,8 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TestRedirectionUserComponent } from './user/test-redirection-user/test-redirection-user.component';
-import { TestRedirectionAdminComponent } from './admin/test-redirection-admin/test-redirection-admin.component';
 import { UserComponent } from './user/user.component';
 import { UserNavBarComponent } from './user/user-nav-bar/user-nav-bar.component';
 import { ClassesComponent } from './user/classes/classes.component';
@@ -22,13 +20,12 @@ import { TodoListService } from 'src/Services/todo-list.service'
 import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminClassesComponent } from './admin/admin-classes/admin-classes.component';
+import { PendingUsersComponent } from './admin/pending-users/pending-users.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
-    TestRedirectionUserComponent,
-    TestRedirectionAdminComponent,
     UserComponent,
     UserNavBarComponent,
     ClassesComponent,
@@ -38,7 +35,8 @@ import { AdminClassesComponent } from './admin/admin-classes/admin-classes.compo
     TodoListComponent,
     AdminNavbarComponent,
     AdminUsersComponent,
-    AdminClassesComponent
+    AdminClassesComponent,
+    PendingUsersComponent
   ],
 
   imports: [
