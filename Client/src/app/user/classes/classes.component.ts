@@ -10,26 +10,38 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ClassesComponent {
 
+  searchQuery = ''
 
   classes: Class[] = []
 
-  filteredClasses: Class[] = this.classes;
+  filteredClasses: Class[] = [];
 
-  joinButton: string = localStorage.getItem('join') || 'Join'
 
-  constructor(private classService: ClassService, private route: ActivatedRoute) {
-
-  }
+  constructor(private classService: ClassService, private route: ActivatedRoute) { }
 
 
 
   getClasses(): void {
     this.classService.getClasses()
-      .subscribe((classes) => { this.classes = classes; this.filteredClasses = classes });
+      .subscribe((classes) => {
+        this.classes = classes;
+        this.filteredClasses = classes
+      });
   }
 
+  updateFilter() {
+    console.log(this.searchQuery)
+    this.filteredClasses = this.classes.filter(filtered =>
+      filtered.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
 
+  }
 
+  modal: boolean = false
+
+  toggle() {
+    this.modal = !this.modal
+  }
 
 
 
@@ -38,8 +50,7 @@ export class ClassesComponent {
     this.classService.joinClass(classID, userID)
       .subscribe(
         (response) => {
-          alert("Your request was sent to the admin.");
-          localStorage.setItem(`join ${classID}-${userID}`, 'Request sent!')
+          this.toggle()
           this.getClasses()
         },
         (error) => {
@@ -52,6 +63,8 @@ export class ClassesComponent {
   ngOnInit(): void {
     this.getClasses()
   }
+
+
 
 }
 
