@@ -47,4 +47,10 @@ export class AdminCourseComponent {
       });
     }
   }
+  onFileChange(event: any) {
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      this.updatedFile = fileList[0];
+    }
+  }
 }

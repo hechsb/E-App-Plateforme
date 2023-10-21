@@ -1,24 +1,24 @@
-<p>admin-course works!</p>
 <div>
-    <div>
-      <i class="fa fa-file-pdf-o" (click)="handleOpenPDF()"></i>
-      <h3 (click)="handleOpenPDF()">{{ course.name }}</h3>
-    </div>
-    <div>
-      <ng-container *ngIf="isEditMode; else displayMode">
-        <div>
-          <form>
-            <input type="text" *ngModel="'updatedName'" placeholder="Enter updated name" />
-            <input type="files" accept="application/pdf" (change)="updatedFile = $event.target.files[0]" />
-            <button type="button" (click)="handleUpdate()">Submit</button>
-            <button type="button" (click)="isEditMode = false">Cancel</button>
-          </form>
-        </div>
-      </ng-container>
-      <ng-template displayMode>
-        <button type="button" (click)="isEditMode = true">Update</button>
-      </ng-template>
-      <button type="button" (click)="handleDelete()">Delete</button>
-    </div>
+  <div>
+    <i class="fa fa-file-pdf-o" (click)="handleOpenPDF()"></i>
+    <h3
+      ngStyle="{ 'position': 'relative', 'left': '100px', 'top': '100px', 'cursor': 'pointer', 'display': 'flex' }"
+      (click)="handleOpenPDF()">{{ course.name }}</h3>
   </div>
-  
+  <div>
+    <ng-container ngIf="isEditMode; else displayMode">
+      <div ngStyle="{ 'position': 'relative', 'left': '30px', 'top': '100px' }">
+        <form>
+          <input type="text" *ngModel="updatedName" placeholder="Enter updated name" />
+          <input type="file" accept="application/pdf" (change)="onFileChange($event)" />
+          <button type="button" (click)="handleUpdate()">Submit</button>
+          <button type="button" (click)="isEditMode = false">Cancel</button>
+        </form>
+      </div>
+    </ng-container>
+    <ng-template displayMode>
+      <button type="button" (click)="isEditMode = true">Update</button>
+    </ng-template>
+    <button type="button" (click)="handleDelete()">Delete</button>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Course } from 'src/app/course';
+import { CoursesComponent } from 'src/app/user/courses/courses.component';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { Course } from 'src/app/course';
 })  
 export class AdminAddCourseComponent implements OnInit {
   classId: Number | undefined;
-  courses: Course[] = [];
+  courses: CoursesComponent[] = [];
   name: string = '';
   file: File | null = null;
   errorMessage: string = '';

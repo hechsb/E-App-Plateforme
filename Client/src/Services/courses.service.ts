@@ -14,7 +14,7 @@ export class CoursesService {
              
 
   private coursesUrl = 'http://localhost:3000/courses';
-  private baseUrl = 'http://localhost:3000/admin-course';
+  private baseUrl = 'http://localhost:3000/admin-add-course';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
