@@ -19,6 +19,9 @@ import { HomeComponent } from './user/home/home.component';
 import { CoursesComponent } from './user/courses/courses.component';
 import { TodoListComponent } from './user/todo-list/todo-list.component';
 import { TodoListService } from 'src/Services/todo-list.service'
+import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { AdminClassesComponent } from './admin/admin-classes/admin-classes.component';
 
 @NgModule({
   declarations: [
@@ -33,15 +36,17 @@ import { TodoListService } from 'src/Services/todo-list.service'
     HomeComponent,
     CoursesComponent,
     TodoListComponent,
-
+    AdminNavbarComponent,
+    AdminUsersComponent,
+    AdminClassesComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
   ],
   providers: [
     {
@@ -55,4 +60,5 @@ import { TodoListService } from 'src/Services/todo-list.service'
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

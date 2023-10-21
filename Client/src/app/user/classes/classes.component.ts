@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-classes',
   templateUrl: './classes.component.html',
-  styleUrls: ['./classes.component.css']
+  // styleUrls: ['./classes.component.css']
 })
 export class ClassesComponent {
 

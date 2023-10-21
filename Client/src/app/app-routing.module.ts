@@ -10,10 +10,13 @@ import { AuthGuard } from 'src/Services/auth-guard.service';
 import { HomeComponent } from './user/home/home.component'
 import { CoursesComponent } from './user/courses/courses.component'
 import { TodoListComponent } from './user/todo-list/todo-list.component'
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { AdminClassesComponent } from './admin/admin-classes/admin-classes.component';
+import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
 
 const routes: Routes = [
   { path: '', component: SignInComponent },
-  { path: 'adminPage', component: TestRedirectionAdminComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
+  { path: 'adminPage', component: AdminNavbarComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
   { path: 'userPage', component: UserNavBarComponent, canActivate: [AuthGuard], data: { roles: ['user'] } },
   { path: 'user', component: UserComponent },
   { path: 'classes', component: ClassesComponent, canActivate: [AuthGuard], data: { roles: ['user'] } },
@@ -22,8 +25,9 @@ const routes: Routes = [
   { path: 'student-home', component: HomeComponent, canActivate: [AuthGuard], data: { roles: ['user'] } },
   { path: 'student-classes', component: ClassesComponent, canActivate: [AuthGuard], data: { roles: ['user'] } },
   { path: 'student-courses/:id', component: CoursesComponent },
-  { path: 'personal-space', component: TodoListComponent }
-
+  { path: 'personal-space', component: TodoListComponent },
+  { path: 'adminUsers', component: AdminUsersComponent },
+  { path: 'admin-classes', component: AdminClassesComponent }
 ];
 
 @NgModule({
