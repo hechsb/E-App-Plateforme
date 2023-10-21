@@ -1,42 +1,72 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { AdminUsersService } from '../../../Services/admin-users.service';
+
 
 @Component({
   selector: 'app-admin-users',
-  templateUrl:'./admin-users.component.html',
+  templateUrl: './admin-users.component.html',
   styleUrls: ['./admin-users.component.css']
 })
 export class AdminUsersComponent {
   // Property to store pending users
   pendingUsers: any[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private AdminUsersService: AdminUsersService) { }
+
+
+
+  getStudentsPendingClasses(): void {
+    this.AdminUsersService.getStudentsPendingClasses()
+      .subscribe((pending) => {
+        this.pendingUsers = pending;
+
+        this.fetchAdditionalUserData()
+
+      });
+  }
+
+  fetchAdditionalUserData(): void {
+    for (const user of this.pendingUsers) {
+      this.AdminUsersService.fetchData(user, user.studentId, user.classId)
+        .subscribe((data) => {
+          user.info = data.info.message;
+          user.userClass = data.userClass;
+          console.log(data)
+        });
+    }
+  }
 
   ngOnInit(): void {
-    // Fetch pending users on component initialization
-    this.http.get('http://localhost:3000/classess/getPendingStudentClasses')
-      .subscribe((response: any) => {
-        this.pendingUsers = response;
-        console.log('Here are pending users', this.pendingUsers);
-      }, error => {
-        console.error(error);
-      });
+
+    this.getStudentsPendingClasses()
   }
 
   // Function to handle user acceptance
   handleAccept(userId: number, classId: number): void {
-    // Handle user acceptance here
-    console.log('Accepted user with ID: ', userId);
-    this.http.put(`http://localhost:3000/classess/accept/${classId}/${userId}`, {})
-      .subscribe(() => {
-        // Reload the page after the request is complete
-        window.location.reload();
-      });
-  }
+    this.AdminUsersService.handleAccept(classId, userId)
+      .subscribe(
+        (response) => {
+          this.getStudentsPendingClasses()
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
 
+  }
   // Function to handle user rejection
-  handleReject(userId: number): void {
-    // Handle user rejection here
-    console.log('Rejected user with ID: ', userId);
+  handleReject(userId: number, classId: number): void {
+    this.AdminUsersService.handleReject(classId, userId)
+      .subscribe(
+        (response) => {
+          console.log('rejected')
+          this.getStudentsPendingClasses()
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+
   }
 }

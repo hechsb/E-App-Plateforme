@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const authJwt = require("../auth/authMiddelware");
+const multer = require('multer')
 
+const upload = multer()
 
 const {
   getAllClasses,
@@ -16,10 +18,11 @@ const {
   getAllInactiveClasses,
   rejectUserRequest
 } = require("../controllers/class");
+const { addCourseToClass } = require("../controllers/course");
 
 router.get("/getAll", getAllClasses);
 router.get("/inactiveClasses", getAllInactiveClasses)
-router.post("/", addClass);
+router.post("/", upload.single('image'),addClass );
 router.post("/:classId/:userId", addUserToClass);
 router.put("/:classId", updateClass);
 router.delete("/:classId", deleteClass);

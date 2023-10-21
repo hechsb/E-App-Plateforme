@@ -4,56 +4,23 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class AdminClassService{
-    private AdminClassServiceUrl = "api/getAll";
-    
    
       constructor(private http : HttpClient) { }
     
     
-      private endpoint = "http://localhost:3000/classess/getAll";
-    
-    
-    
-    
-      addProduct(p:any){
-    
-        return  this.http.post(this.endpoint + '' , p);
-    
+      fetchClasses() {
+        return this.http.get<any[]>('http://localhost:3000/classess/getAll');
       }
+
+      addClass(name: string, image: File) {
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('image', image);
+
     
-    
-      getAllClasses(){
-    
-        return this.http.get(this.endpoint + 'classes/getall'); 
-    
+        return this.http.post("http://localhost:3000/classess", formData);
       }
-    
-    
-      deleteProduct(id: any){
-    
-        return this.http.delete( this.endpoint + 'product/delete/' + id );
-    
-      }
-    
-    
-      getProductById(id: any){
-    
-        return this.http.get(this.endpoint +  'product/getbyid/' + id);
-     
-      }
-    
-    
-      updateProduct( id: any , pro: any ){
-    
-        return this.http.put( this.endpoint + 'product/update/' + id   , pro  );
-        
-    
-      }
-    
-    
-    
-    
-    
+ 
     
     }
 

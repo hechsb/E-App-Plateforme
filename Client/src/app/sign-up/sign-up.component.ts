@@ -7,24 +7,23 @@ import { AuthService } from 'src/Services/auth.service';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent {
-  signUpForm :FormGroup;
+  signUpForm: FormGroup;
 
-  constructor(private fb :FormBuilder, private authService : AuthService  ){
+  constructor(private fb: FormBuilder, private authService: AuthService) {
 
-    this.signUpForm=this.fb.group({
-      email : ["",Validators.email],
-      firstName:["",Validators.required],
-      lastName:["",Validators.required],
-      password :["",[Validators.required ]]
+    this.signUpForm = this.fb.group({
+      email: ["", Validators.email],
+      firstName: ["", Validators.required],
+      lastName: ["", Validators.required],
+      password: ["", [Validators.required]]
     })
   }
-    submitForm(){
-      if (this.signUpForm.valid) {
-        console.log(this.signUpForm.value);
-        this.authService.signUp(this.signUpForm.value)
-       
-      }
-    
+  submitForm() {
+    if (this.signUpForm.valid) {
+      console.log(this.signUpForm.value);
+      this.authService.signUp(this.signUpForm.value)
+
     }
+
   }
-  
+}

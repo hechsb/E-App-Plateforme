@@ -1,24 +1,37 @@
-<p>admin-course works!</p>
 <div>
-    <div>
-      <i class="fa fa-file-pdf-o" (click)="handleOpenPDF()"></i>
-      <h3 (click)="handleOpenPDF()">{{ course.name }}</h3>
-    </div>
-    <div>
-      <ng-container *ngIf="isEditMode; else displayMode">
-        <div>
-          <form>
-            <!-- <input type="text" [(ngModel)]="updatedName" placeholder="Enter updated name" /> -->
-            <!-- <input type="file" accept="application/pdf" (change)="updatedFile = $event.target.file[0]" /> -->
-            <button type="button" (click)="handleUpdate()">Submit</button>
-            <button type="button" (click)="isEditMode = false">Cancel</button>
-          </form>
-        </div>
-      </ng-container>
-      <ng-template #displayMode>
-        <button type="button" (click)="isEditMode = true">Update</button>
-      </ng-template>
-      <button type="button" (click)="handleDelete()">Delete</button>
-    </div>
+  <div>
+    <i class="fa fa-file-pdf-o" (click)="handleOpenPDF()"></i>
+    <h3
+      ngStyle="{ 'position': 'relative', 'left': '100px', 'top': '100px', 'cursor': 'pointer', 'display': 'flex' }"
+      (click)="handleOpenPDF()">"{{ course.name }}"</h3>
   </div>
-  
+  <div>
+    <ng-container ngIf="isEditMode; else displayMode">
+      <div ngStyle="{ 'position': 'relative', 'left': '30px', 'top': '100px' }">
+        <form>
+          <input type="text" *ngModel="updatedName" placeholder="Enter updated name" />
+          <input type="file" accept="application/pdf" (change)="onFileChange($event)" />
+          <button type="button" (click)="handleUpdate()">Submit</button>
+          <button type="button" (click)="isEditMode = false">Cancel</button>
+        </form>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-screen-lg ml-auto" style='margin-right: 150px'>
+        <div class="class-card" *ngFor="let courseInfo of classList">
+          <a href="#" class="text-no-underline">
+            <div class="bg-white border border-gray-300 rounded-lg hover:bg-gray-100 dark:border-gray-1000 dark:bg-gray-800 dark:hover:bg-gray-700 p-4">
+              <img class="object-cover h-32 md:h-40 w-full rounded-t-lg" [src]="courseInfo.image" alt="{{courseInfo.name}}">
+              <div class="p-2">
+                <h5 class="text-xl font-bold mb-2 text-gray-900 dark:text-black">{{courseInfo.name}}</h5>
+                <button class="bg-orange-700 hover:bg-orange-800 text-white font-medium rounded-lg text-xs px-3 py-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-300 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">Update</button>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template displayMode>
+      <button type="button" (click)="isEditMode = true">Update</button>
+    </ng-template>
+    <button type="button" (click)="handleDelete()">Delete</button>
+  </div>
+</div>

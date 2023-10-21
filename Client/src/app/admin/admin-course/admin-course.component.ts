@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CoursesService } from 'src/Services/courses.service';
 
 
 @Component({
@@ -11,10 +12,21 @@ export class AdminCourseComponent {
   @Input() course: any; // You can create an interface for the course object
 
   updatedName: string = '';
-  updatedFile: File | null = null;
+  updatedFile: File | undefined = undefined;
   isEditMode: boolean = false;
+  CourseList: any [] = [];
+  isModalOpen: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private CoursesService: CoursesService) {}
+  // ngOnInit(): void {
+  //   this.CoursesService.fetchClasses().
+  //   subscribe({next:(data :Course[]):void => {
+  //     console.log('Fetched Courses successfully',this.CoursesService);
+  //   }, error:(error)=>{
+  //   console.error('Error fetching Courses:', error);
+  // }})
+
+  // }
 
   handleOpenPDF() {
     window.open(`http://localhost:3000/${this.course.file}`, "_blank");
@@ -31,7 +43,6 @@ export class AdminCourseComponent {
       headers: { 'Content-Type': 'multipart/form-data' }
     }).subscribe(() => {
       this.isEditMode = false;
-      // Call a function to fetch courses (you should have a service for this)
     }, error => {
       console.error('Error updating course:', error);
     });
@@ -47,4 +58,19 @@ export class AdminCourseComponent {
       });
     }
   }
+  onFileChange(event: any) {
+    const fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      this.updatedFile = fileList[0];
+    }
+  }
+  openModal(): void {
+    this.isModalOpen = true;
+    console.log("it worked ")
+  }
+  closeModal(): void {
+    this.isModalOpen = false;
+  }
+
+  
 }
