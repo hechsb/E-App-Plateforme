@@ -17,8 +17,16 @@ import { AuthGuard } from 'src/Services/auth-guard.service';
 import { AuthService } from 'src/Services/auth.service';
 import { HomeComponent } from './user/home/home.component';
 import { CoursesComponent } from './user/courses/courses.component';
+<<<<<<< HEAD
 import { TodoListComponent } from './user/todo-list/todo-list.component';
 import { TodoListService } from 'src/Services/todo-list.service'
+=======
+import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { AdminClassesComponent } from './admin/admin-classes/admin-classes.component';
+
+
+>>>>>>> ff0272aeaff426d85922c410b918307e7a0bdbe4
 
 @NgModule({
   declarations: [
@@ -28,20 +36,33 @@ import { TodoListService } from 'src/Services/todo-list.service'
     TestRedirectionAdminComponent,
     UserComponent,
     UserNavBarComponent,
-    ClassesComponent,
+    ClassesComponent, 
     SignUpComponent,
     HomeComponent,
     CoursesComponent,
+<<<<<<< HEAD
     TodoListComponent,
 
+=======
+    AdminNavbarComponent,
+    AdminUsersComponent,
+    AdminClassesComponent
+>>>>>>> ff0272aeaff426d85922c410b918307e7a0bdbe4
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+<<<<<<< HEAD
 
+=======
+   
+   
+    
+>>>>>>> ff0272aeaff426d85922c410b918307e7a0bdbe4
   ],
   providers: [
     {
@@ -55,4 +76,5 @@ import { TodoListService } from 'src/Services/todo-list.service'
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
