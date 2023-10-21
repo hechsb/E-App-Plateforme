@@ -27,13 +27,13 @@ const routes: Routes = [
   { path: 'student-courses/:id', component: CoursesComponent },
   {path : 'adminUsers' , component :AdminUsersComponent},
   {path : 'admin-classes', component:AdminClassesComponent},
+  {path: 'admin-classes/id', component: AdminAddCourseComponent},
   {path : 'admin-add-course', component:AdminAddCourseComponent, canActivate: [AuthGuard], data: {roles: ['admin']}},
   {path : 'admin-course' , component:AdminCourseComponent},
   // {path:'adminPage', component : AdminClassesComponent}
 
-  { path: 'personal-space', component: TodoListComponent },
-  { path: 'adminUsers', component: AdminUsersComponent },
-  { path: 'admin-classes', component: AdminClassesComponent }
+  { path: 'personal-space', component: TodoListComponent }
+  // jjnj
 ];
 
 @NgModule({
