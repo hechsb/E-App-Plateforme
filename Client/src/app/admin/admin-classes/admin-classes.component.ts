@@ -33,18 +33,7 @@ export class AdminClassesComponent implements OnInit {
   }
   handleImageUpload(event: any): void {
     this.image = event.target.files[0];
-  
-    // const file = event.target.files[0];
-    // const formData = new FormData();
-    // formData.append('file', file);
-    // formData.append('upload_preset', 'unsigned_upload');
 
-    // this.http.post<any>('https://api.cloudinary.com/v1_1/dmualnorm/image/upload', formData)
-    //   .subscribe(response => {
-    //     this.image = response.secure_url;
-    //   }, error => {
-    //     console.error('Error uploading image to Cloudinary:', error);
-    //   });
   }
 
 
