@@ -4,6 +4,7 @@ const config = require("./config/config.json");
 const sequelize = new Sequelize(config.database, config.user, config.password, {
   host: config.host,
   dialect: "mysql",
+  // dd
 });
 const db = {};
 db.sequelize = sequelize;

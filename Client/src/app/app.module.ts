@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import Rea
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { HttpClientModule ,HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TestRedirectionUserComponent } from './user/test-redirection-user/test-redirection-user.component';
 import { TestRedirectionAdminComponent } from './admin/test-redirection-admin/test-redirection-admin.component';
 import { UserComponent } from './user/user.component';
@@ -17,12 +17,12 @@ import { AuthGuard } from 'src/Services/auth-guard.service';
 import { AuthService } from 'src/Services/auth.service';
 import { HomeComponent } from './user/home/home.component';
 import { CoursesComponent } from './user/courses/courses.component';
+import { TodoListComponent } from './user/todo-list/todo-list.component';
+import { TodoListService } from 'src/Services/todo-list.service'
 import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminClassesComponent } from './admin/admin-classes/admin-classes.component';
 import { AdminAddCourseComponent } from './admin/admin-add-course/admin-add-course.component';
-
-
 
 @NgModule({
   declarations: [
@@ -32,25 +32,23 @@ import { AdminAddCourseComponent } from './admin/admin-add-course/admin-add-cour
     TestRedirectionAdminComponent,
     UserComponent,
     UserNavBarComponent,
-    ClassesComponent, 
+    ClassesComponent,
     SignUpComponent,
     HomeComponent,
     CoursesComponent,
+    TodoListComponent,
     AdminNavbarComponent,
     AdminUsersComponent,
     AdminClassesComponent,
     AdminAddCourseComponent
   ],
-  
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-   
-   
-    
   ],
   providers: [
     {
@@ -60,7 +58,8 @@ import { AdminAddCourseComponent } from './admin/admin-add-course/admin-add-cour
     },
     AuthGuard,
     AuthService,
-  ],    
+    TodoListService
+  ],
   bootstrap: [AppComponent]
 })
 

@@ -1,0 +1,41 @@
+.modal-content-custom-cart-checkout {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    padding: 4px 28px;
+    border-radius: 3px;
+    max-width: 500vh;
+    min-width: 300px;
+    max-height: 500vh;
+    height: 30vh;
+    width: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 2);
+    border-radius: 15px;
+
+}
+
+.overlay-checkout {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    background: rgba(49, 49, 49, 0.8);
+
+}
+
+.thanks {
+
+    padding-top: 8vh;
+    padding-left: 6vh;
+    width: 80vh;
+    color: white;
+    font-size: 30px;
+
+}

@@ -9,8 +9,12 @@ import { ClassService } from '../../../Services/class.service'
 })
 export class HomeComponent {
 
+  searchQuery = ''
 
   classes: Class[] = []
+
+  filteredClasses: Class[] = [];
+
 
   constructor(private classService: ClassService) {
 
@@ -18,7 +22,18 @@ export class HomeComponent {
 
   getClasses(): void {
     this.classService.getEnrolledClasses()
-      .subscribe(classes => { this.classes = classes; console.log('jawhar') })
+      .subscribe(classes => {
+        this.classes = classes;
+        this.filteredClasses = classes
+      })
+  }
+
+  updateFilter() {
+    console.log(this.searchQuery)
+    this.filteredClasses = this.classes.filter(filtered =>
+      filtered.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+
   }
 
   ngOnInit(): void {
