@@ -43,9 +43,11 @@ export class AdminAddCourseComponent implements OnInit {
     const formData = new FormData();
     formData.append('name', this.name);
     formData.append('file', this.file);
+    console.log(this.name)
+    console.log(this.file)
 
     this.http
-      .post(`http://localhost:3000/courses/${this.classId}`, formData)
+      .post(`http://localhost:3000/courses/1`, formData)
       .subscribe({
         next: (response) => {
           console.log('Course added successfully!');

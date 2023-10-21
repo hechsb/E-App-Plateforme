@@ -36,6 +36,8 @@ export class CoursesService {
     return this.http.post(`${this.baseUrl}/classes/${classId}/addCourse`, formData);
   }
 
+ 
+
 
 
   getCourses(id: number): Observable<Course[]> {
@@ -49,6 +51,14 @@ export class CoursesService {
 
   log(something: any): void {
     console.log(something)
+  }
+  joinClass(classID: number, CourseId: number) {
+    const url = `${this.coursesUrl}/${classID}/${CourseId}`
+    return this.http.post(url, null, this.httpOptions)
+      .pipe(
+        tap(_ => this.log(url)),
+        catchError(this.handleError('joinClass', []))
+      )
   }
 
 } 

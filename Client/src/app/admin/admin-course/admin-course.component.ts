@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CoursesService } from 'src/Services/courses.service';
-import { Course } from 'src/app/course';
+
 
 @Component({
   selector: 'app-admin-course',
@@ -14,6 +14,8 @@ export class AdminCourseComponent {
   updatedName: string = '';
   updatedFile: File | undefined = undefined;
   isEditMode: boolean = false;
+  CourseList: any [] = [];
+  isModalOpen: boolean = false;
 
   constructor(private http: HttpClient, private CoursesService: CoursesService) {}
   // ngOnInit(): void {
@@ -62,4 +64,13 @@ export class AdminCourseComponent {
       this.updatedFile = fileList[0];
     }
   }
+  openModal(): void {
+    this.isModalOpen = true;
+    console.log("it worked ")
+  }
+  closeModal(): void {
+    this.isModalOpen = false;
+  }
+
+  
 }
