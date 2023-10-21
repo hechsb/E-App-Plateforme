@@ -1,29 +1,26 @@
 <app-admin-navbar></app-admin-navbar>
 <div class="user-management flex justify-center">
-    <div class="text-center">
-      <div class="p-4 flex justify-center items-center">
-        <h1 class="text-3xl">Users management</h1>
-      </div>
-      <div class="px-3 py-4 flex justify-center">
-        <table class="w-full text-md bg-white shadow-md rounded mb-4">
-          <thead>
-            <tr class="border-b">
-              <th class="text-left p-3 px-5">Email</th>
-              <th class="text-left p-3 px-5">Class</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let userr of pendingUsers">
-              <!-- <app-pending-user
-                [userr]="userr"
-                (accept)="handleAccept(userr.id, userr.classId)"
-                (reject)="handleReject(userr.id)">
-              </app-pending-user> -->
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <div class="text-center">
+    <div class="p-4 flex justify-center items-center">
+      <h1 class="text-3xl">Users management</h1>
+    </div>
+    <div class="px-3 py-4 flex justify-center">
+      <table class="w-full text-md bg-white shadow-md rounded mb-4">
+        <thead>
+          <tr class="border-b">
+            <th class="text-left p-3 px-5">Email</th>
+            <th class="text-left p-3 px-5">Class</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of pendingUsers">
+            <app-pending-users [user]="user" (accept)="handleAccept(user.classId, user.studentId)"
+              (reject)="handleReject(user.classId, user.studentId)">
+            </app-pending-users>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  
+</div>
