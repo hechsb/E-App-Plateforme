@@ -30,8 +30,8 @@ export class AdminUsersComponent {
     for (const user of this.pendingUsers) {
       this.AdminUsersService.fetchData(user, user.studentId, user.classId)
         .subscribe((data) => {
-          user.info = data.info.message; // Assuming `info` is the user data
-          user.userClass = data.userClass; // Assuming `userClass` is the class data
+          user.info = data.info.message;
+          user.userClass = data.userClass;
           console.log(data)
         });
     }
