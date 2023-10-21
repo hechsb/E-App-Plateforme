@@ -90,18 +90,45 @@ module.exports = {
     }
   },
   updateClass: async (req, res) => {
-    const classId = req.params.classId;
-    const { name, image } = req.body;
     try {
-      await Class.update(
-        { name, image },
-        {
+      const classId = req.params.classId;
+      const { name } = req.body;
+      if (req.file) {
+        const imageBuffer = req.file.buffer;
+        const imageStream = Readable.from(imageBuffer)
+        const cloudinaryResult = await cloudinary.uploader.upload_stream({
+          resource_type: 'image',
+        },
+          async (error, result) => {
+            if (error) {
+              console.error('Error uploading image to Cloudinary:', error);
+              res.status(500).json({ error: 'Image upload failed' });
+            }
+            console.log(cloudinaryResult)
+
+            const updatedClass = await Class.update({ name, image: result.secure_url }, {
+              where: {
+                id: classId,
+              },
+            }
+            );
+            res.status(201).json(updatedClass);
+          }
+        )
+        imageStream.pipe(cloudinaryResult);
+      }
+
+      else {
+        const updatedClass = await Class.update({ name }, {
           where: {
             id: classId,
           },
         }
-      );
-      res.status(201).send("Class updated successfully");
+        );
+        res.status(201).json(updatedClass);
+
+      }
+
     } catch (error) {
       console.log(error);
       res.status(500).send("An error occurred: " + error.message);
