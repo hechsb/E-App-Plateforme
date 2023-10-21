@@ -1,10 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
-
-
 import { AdminClasses } from 'src/app/admin-classes';
 import { AdminClassService } from '../../../Services/admin-classes.service';
-
 import { HttpClient } from '@angular/common/http';
 import { Class } from 'src/app/class';
 import { Router } from '@angular/router';
@@ -24,7 +21,6 @@ export class AdminClassesComponent implements OnInit {
   classList: any[] = [];
   searchTerm: string = '';
 
-<<<<<<< HEAD
   constructor(private http: HttpClient, private adminClassService: AdminClassService) { }
 
   fetchClasses(): void {
@@ -50,12 +46,6 @@ export class AdminClassesComponent implements OnInit {
     // const formData = new FormData();
     // formData.append('file', file);
     // formData.append('upload_preset', 'unsigned_upload');
-=======
-  constructor(private http: HttpClient, private adminClassService: AdminClassService ,private router: Router) {}
-
-  handleImageUpload(event: any): void {
-    this.image = event.target.files[0];
->>>>>>> fbc2facfb3892f03184ea1b3c3f51bd7746d9b81
 
   }
 
@@ -87,29 +77,17 @@ export class AdminClassesComponent implements OnInit {
     console.log(formData)
     console.log(this.image)
     console.log(this.name)
-<<<<<<< HEAD
     this.adminClassService.addClass(this.name, this.image)
       .subscribe(
         (response) => {
           console.log('Class added successfully', response);
+          this.classList.push(response);
+          this.closeAddModal()
         },
         (error) => {
           console.error("error handeling", error)
         }
       )
-=======
-   this.adminClassService.addClass(this.name,this.image)
-   .subscribe(
-    (response)=>{
-      console.log('Class added successfully', response);
-      this.classList.push(response);
-      this.closeModal()
-    },
-    (error)=>{
-      console.error("error handeling",error)
-    }
-   )
->>>>>>> fbc2facfb3892f03184ea1b3c3f51bd7746d9b81
   }
 
 
@@ -140,7 +118,6 @@ export class AdminClassesComponent implements OnInit {
     this.selectedClass = thisClass
   }
 
-<<<<<<< HEAD
   toggleDeleteModal(thisClass?: Class): void {
     this.deleteModalOpen = !this.deleteModalOpen
     this.selectedClass = thisClass
@@ -151,22 +128,6 @@ export class AdminClassesComponent implements OnInit {
     this.addModalOpen = false;
   }
 
-
-
-
-=======
-  
-  ngOnInit(): void {
-    this.adminClassService.fetchClasses()
-    .subscribe({next:(data :Class[]):void => {
-      this.classList = data;
-      console.log('Fetched classes successfully', this.classList);
-    }, error:(error) => {
-      console.error('Error fetching classes:', error);
-    }});
-  }
-
->>>>>>> fbc2facfb3892f03184ea1b3c3f51bd7746d9b81
 
 
 }

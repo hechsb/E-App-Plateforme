@@ -95,6 +95,13 @@ export class AdminAddCourseComponent implements OnInit {
         )
     }
   }
+
+  handleOpenPDF(file: File): void {
+    window.open(`http://localhost:3000/${file}`, "_blank")
+  }
+
+
+
   //   this.http
   //     .get(`http://localhost:3000/courses/${this.classId}`)
   //     .subscribe({
