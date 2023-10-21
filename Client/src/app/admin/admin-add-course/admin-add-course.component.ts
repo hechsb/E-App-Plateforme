@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-add-course',
@@ -18,8 +19,9 @@ export class AdminAddCourseComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.classId = params['classId'];
-      this.fetchCourses();
+      const classId = params['classId']; 
+      console.log('Class ID:', classId);
+  
     });
   }
 
