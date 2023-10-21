@@ -21,6 +21,7 @@ import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.componen
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminClassesComponent } from './admin/admin-classes/admin-classes.component';
 import { PendingUsersComponent } from './admin/pending-users/pending-users.component';
+import { AdminAddCourseComponent } from './admin/admin-add-course/admin-add-course.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PendingUsersComponent } from './admin/pending-users/pending-users.compo
     AdminNavbarComponent,
     AdminUsersComponent,
     AdminClassesComponent,
-    PendingUsersComponent
+    PendingUsersComponent,
+    AdminAddCourseComponent
   ],
 
   imports: [
@@ -45,6 +47,7 @@ import { PendingUsersComponent } from './admin/pending-users/pending-users.compo
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [
     {

@@ -7,7 +7,7 @@ import { AdminClassService } from '../../../Services/admin-classes.service';
 
 import { HttpClient } from '@angular/common/http';
 import { Class } from 'src/app/class';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-classes',
@@ -21,30 +21,11 @@ export class AdminClassesComponent implements OnInit {
   classList: any[] = [];
   searchTerm: string = '';
 
-  constructor(private http: HttpClient, private adminClassService: AdminClassService) {}
-  ngOnInit(): void {
-    this.adminClassService.fetchClasses()
-    .subscribe({next:(data :Class[]):void => {
-      this.classList = data;
-      console.log('Fetched classes successfully', this.classList);
-    }, error:(error) => {
-      console.error('Error fetching classes:', error);
-    }});
-  }
+  constructor(private http: HttpClient, private adminClassService: AdminClassService ,private router: Router) {}
+
   handleImageUpload(event: any): void {
     this.image = event.target.files[0];
-  
-    // const file = event.target.files[0];
-    // const formData = new FormData();
-    // formData.append('file', file);
-    // formData.append('upload_preset', 'unsigned_upload');
 
-    // this.http.post<any>('https://api.cloudinary.com/v1_1/dmualnorm/image/upload', formData)
-    //   .subscribe(response => {
-    //     this.image = response.secure_url;
-    //   }, error => {
-    //     console.error('Error uploading image to Cloudinary:', error);
-    //   });
   }
 
 
@@ -79,6 +60,8 @@ export class AdminClassesComponent implements OnInit {
    .subscribe(
     (response)=>{
       console.log('Class added successfully', response);
+      this.classList.push(response);
+      this.closeModal()
     },
     (error)=>{
       console.error("error handeling",error)
@@ -96,6 +79,16 @@ export class AdminClassesComponent implements OnInit {
   }
 
   
+  ngOnInit(): void {
+    this.adminClassService.fetchClasses()
+    .subscribe({next:(data :Class[]):void => {
+      this.classList = data;
+      console.log('Fetched classes successfully', this.classList);
+    }, error:(error) => {
+      console.error('Error fetching classes:', error);
+    }});
+  }
+
 
 
 }
