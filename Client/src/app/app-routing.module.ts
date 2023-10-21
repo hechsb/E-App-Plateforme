@@ -31,6 +31,7 @@ const routes: Routes = [
   {path : 'admin-add-course', component:AdminAddCourseComponent, canActivate: [AuthGuard], data: {roles: ['admin']}},
   {path : 'admin-course' , component:AdminCourseComponent},
   // {path:'adminPage', component : AdminClassesComponent}
+  
 
   { path: 'personal-space', component: TodoListComponent }
   // jjnj
