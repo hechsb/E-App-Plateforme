@@ -21,7 +21,7 @@ app.use("/classess", authJwt.verifyToken, classRouter);
 app.use("/courses", courseRouter);
 
 // console.log(process.env.API_Key)
-//Aiii 
+// Aiii 
 
 
 // const openai = new OpenAI({
