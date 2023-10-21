@@ -20,6 +20,7 @@ import { TodoListService } from 'src/Services/todo-list.service'
 import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminClassesComponent } from './admin/admin-classes/admin-classes.component';
+import { PendingUsersComponent } from './admin/pending-users/pending-users.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AdminClassesComponent } from './admin/admin-classes/admin-classes.compo
     TodoListComponent,
     AdminNavbarComponent,
     AdminUsersComponent,
-    AdminClassesComponent
+    AdminClassesComponent,
+    PendingUsersComponent
   ],
 
   imports: [
