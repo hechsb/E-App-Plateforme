@@ -1,13 +1,10 @@
 
 import { Component, OnInit } from '@angular/core';
-
-
 import { AdminClasses } from 'src/app/admin-classes';
 import { AdminClassService } from '../../../Services/admin-classes.service';
-
 import { HttpClient } from '@angular/common/http';
 import { Class } from 'src/app/class';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-classes',
@@ -50,12 +47,6 @@ export class AdminClassesComponent implements OnInit {
     // formData.append('file', file);
     // formData.append('upload_preset', 'unsigned_upload');
 
-    // this.http.post<any>('https://api.cloudinary.com/v1_1/dmualnorm/image/upload', formData)
-    //   .subscribe(response => {
-    //     this.image = response.secure_url;
-    //   }, error => {
-    //     console.error('Error uploading image to Cloudinary:', error);
-    //   });
   }
 
 
@@ -90,6 +81,8 @@ export class AdminClassesComponent implements OnInit {
       .subscribe(
         (response) => {
           console.log('Class added successfully', response);
+          this.classList.push(response);
+          this.closeAddModal()
         },
         (error) => {
           console.error("error handeling", error)
@@ -134,9 +127,6 @@ export class AdminClassesComponent implements OnInit {
   closeAddModal(): void {
     this.addModalOpen = false;
   }
-
-
-
 
 
 

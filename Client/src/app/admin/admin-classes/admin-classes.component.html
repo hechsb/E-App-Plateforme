@@ -1,4 +1,5 @@
 <app-admin-navbar></app-admin-navbar>
+
 <div class="px-3 py-4 flex" style="flex: 1; overflow-y: auto;">
 
   <button (click)="openAddModal()"
@@ -71,7 +72,7 @@
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-screen-lg ml-auto" style='margin-right: 150px'>
     <div class="class-card" *ngFor="let classInfo of classList">
-      <a class="text-no-underline">
+      <a [routerLink]="['/class-details', classInfo.id]">
         <div
           class="bg-white border border-gray-300 rounded-lg hover:bg-gray-100 dark:border-gray-1000 dark:bg-gray-800 dark:hover:bg-gray-700 p-4">
           <img class="object-cover h-32 md:h-40 w-full rounded-t-lg" [src]="classInfo.image" alt="{{classInfo.name}}">
@@ -106,8 +107,4 @@
           </button>
         </div>
       </div>
-
     </div>
-  </div>
-
-</div>
