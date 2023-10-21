@@ -23,6 +23,7 @@ import { AdminClassesComponent } from './admin/admin-classes/admin-classes.compo
 import { PendingUsersComponent } from './admin/pending-users/pending-users.component';
 import { AdminAddCourseComponent } from './admin/admin-add-course/admin-add-course.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,12 +1,15 @@
 <app-admin-navbar></app-admin-navbar>
+
 <div class="px-3 py-4 flex" style="flex: 1; overflow-y: auto;">
 
   <button
   (click)="openModal()"
+  
   class="text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-orange-800 shadow-lg shadow-orange-500/50 dark:shadow-lg dark:shadow-orange-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
   type="button"
   style="height: 150px; position: relative; left: 10%; transform: translate(-50%, -50%); margin-top:10%;"
 >
+
   Add classes
 </button>
   <!-- Search for a class input -->
@@ -103,22 +106,7 @@
   </div>
 
 </div>
-<!-- <div class="class-container grid grid-cols-3 gap-4" style="margin-left: 5%; width: 80%;">
-  <ng-container>
-    <div *ngFor="let classInfo of classList" style="flex: 1; min-width: 50px; margin: 50px 0; padding: 5px; cursor: pointer;">
-      <div
-                class="flex items-center bg-white border border-gray-500 rounded-lg hover-bg-gray-100 dark-border-gray-1000 dark-bg-gray-800 dark-hover-bg-gray-700">
-                <img class="object-cover w-full rounded-t-lg h-96 md:h-40 md:w-48" [src]="classInfo.image" alt="" />
-                <div class="flex flex-col justify-between p-4 leading-normal">
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark-text-white">
-                    
-                  </h5>
-                </div>
-        </div>
-      
-    </div>
-  </ng-container>
-</div> -->
+
 
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-screen-lg ml-auto" style='margin-right: 150px'>
   <div class="class-card" *ngFor="let classInfo of classList">

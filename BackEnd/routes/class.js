@@ -18,6 +18,7 @@ const {
   getAllInactiveClasses,
   rejectUserRequest
 } = require("../controllers/class");
+const { addCourseToClass } = require("../controllers/course");
 
 router.get("/getAll", getAllClasses);
 router.get("/inactiveClasses", getAllInactiveClasses)
