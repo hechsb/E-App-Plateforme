@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Course } from '../app/course'
 
@@ -8,12 +8,13 @@ import { Course } from '../app/course'
   providedIn: 'root'
 })
 export class CoursesService {
+  
 
   constructor(private http: HttpClient) { }
-
+             
 
   private coursesUrl = 'http://localhost:3000/courses';
-
+  
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -26,6 +27,16 @@ export class CoursesService {
       return of(result as T);
     };
   }
+  addCourseToClass(classId: number, name: string, file: File) {
+    const formData = new FormData();
+    formData.append('name', name);  
+    formData.append('file', file);
+
+    return this.http.post(`http://localhost:3000/courses/${classId}`, formData);
+  }
+
+ 
+
 
 
   getCourses(id: number): Observable<Course[]> {
@@ -40,5 +51,14 @@ export class CoursesService {
   log(something: any): void {
     console.log(something)
   }
+  joinClass(classID: number, CourseId: number) {
+    const url = `${this.coursesUrl}/${classID}/${CourseId}`
+    return this.http.post(url, null, this.httpOptions)
+      .pipe(
+        tap(_ => this.log(url)),
+        catchError(this.handleError('joinClass', []))
+      )
+  }
 
-}
+} 
+
