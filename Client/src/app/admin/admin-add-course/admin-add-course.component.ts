@@ -15,7 +15,7 @@ import { CoursesService } from 'src/Services/courses.service';
 })  
 export class AdminAddCourseComponent implements OnInit {
   classId :number |undefined ;
-  courses: CoursesComponent[] = [];
+  courses: Course[] = [];
   name: string = '';
   file !:File  ;
   errorMessage: string = '';
@@ -50,8 +50,9 @@ export class AdminAddCourseComponent implements OnInit {
   if(this.classId){
       this.CoursesService.addCourseToClass(this.classId, this.name, this.file)
       .subscribe(
-        (response)=>{
-          console.log(response)       
+        (response :any)=>{
+          console.log(response) 
+          this.courses = [...this.courses, response]    
          },
          (error)=>{
           console.log(error)
@@ -85,9 +86,10 @@ export class AdminAddCourseComponent implements OnInit {
     if(this.classId){
          this.CoursesService.getCourses(this.classId)
          .subscribe(
-          (response)=>{
-            console.log("hani lena ",response)
-         },(error)=>{
+          (response: Course[]) => {
+            this.courses = response; // Store the courses in the array
+            console.log("oyyyyyyyyyy",this.courses)
+          },(error)=>{
           console.log(error)
          }
          )
