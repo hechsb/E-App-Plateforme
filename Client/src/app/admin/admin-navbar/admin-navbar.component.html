@@ -41,11 +41,12 @@
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        <a [routerLink]="['/adminUsers']" routerLinkActive="['bg-gray-900', 'text-white']"
+                        <a [routerLink]="['/adminUsers']" [routerLinkActive]="['bg-gray-900', 'text-white']"
                             class="text-gray-300 hover:bg-gray-700 hover:text-white text-white rounded-md px-3 py-2 text-sm font-medium"
-                            aria-current="page">Users</a>
+                            aria-current="page">User requests <span id="circle"
+                                *ngIf="requestSize > 0">{{requestSize}}</span></a>
 
-                        <a [routerLink]="['/admin-classes']" routerLinkActive="['bg-gray-900', 'text-white']"
+                        <a [routerLink]="['/admin-classes']" [routerLinkActive]="['bg-gray-900', 'text-white']"
                             class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Classes</a>
 
 
@@ -73,7 +74,7 @@
                         class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                         role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                         <!-- Active: "bg-gray-100", Not Active: "" -->
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                        <a class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                             id="user-menu-item-1">Settings</a>
                         <button class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                             id="user-menu-item-2" (click)="logout()">Sign out</button>
@@ -83,3 +84,4 @@
         </div>
     </div>
 </nav>
+<app-admin-users *ngIf="path ==='/adminUsers'" (refresh)="getNotification()"></app-admin-users>
