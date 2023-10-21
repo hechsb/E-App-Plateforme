@@ -30,10 +30,10 @@ export class CoursesService {
   }
   addCourseToClass(classId: string, name: string, file: File) {
     const formData = new FormData();
-    formData.append('name', name);
+    formData.append('name', name);  
     formData.append('file', file);
 
-    return this.http.post(`${this.baseUrl}/classes/${classId}/addCourse`, formData);
+    return this.http.post(`http://localhost:3000/courses/${classId}`, formData);
   }
 
  

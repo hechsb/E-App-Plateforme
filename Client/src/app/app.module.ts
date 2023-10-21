@@ -20,8 +20,8 @@ import { TodoListService } from 'src/Services/todo-list.service'
 import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminClassesComponent } from './admin/admin-classes/admin-classes.component';
-import { AdminAddCourseComponent } from './admin/admin-add-course/admin-add-course.component';
 import { PendingUsersComponent } from './admin/pending-users/pending-users.component';
+import { AdminAddCourseComponent } from './admin/admin-add-course/admin-add-course.component';
 
 
 @NgModule({
@@ -38,9 +38,8 @@ import { PendingUsersComponent } from './admin/pending-users/pending-users.compo
     AdminNavbarComponent,
     AdminUsersComponent,
     AdminClassesComponent,
-    AdminAddCourseComponent,
-    PendingUsersComponent
-
+    PendingUsersComponent,
+    AdminAddCourseComponent
   ],
 
   imports: [
@@ -49,6 +48,7 @@ import { PendingUsersComponent } from './admin/pending-users/pending-users.compo
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [
     {

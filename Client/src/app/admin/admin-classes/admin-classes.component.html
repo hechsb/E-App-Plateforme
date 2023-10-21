@@ -106,26 +106,11 @@
   </div>
 
 </div>
-<div class="class-container grid grid-cols-3 gap-4" style="margin-left: 5%; width: 80%;">
-  <ng-container>
-    <div *ngFor="let classInfo of classList" style="flex: 1; min-width: 50px; margin: 50px 0; padding: 5px; cursor: pointer;">
-      <div
-                class="flex items-center bg-white border border-gray-500 rounded-lg hover-bg-gray-100 dark-border-gray-1000 dark-bg-gray-800 dark-hover-bg-gray-700">
-                <img class="object-cover w-full rounded-t-lg h-96 md:h-40 md:w-48" [src]="classInfo.image" alt="" />
-                <div class="flex flex-col justify-between p-4 leading-normal">
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark-text-white">
-                    
-                  </h5>
-                </div>
-        </div>
-      
-    </div>
-  </ng-container>
-</div> 
 
-<!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-screen-lg ml-auto" style='margin-right: 150px'>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-screen-lg ml-auto" style='margin-right: 150px'>
   <div class="class-card" *ngFor="let classInfo of classList">
-    <a href="#" class="text-no-underline">
+    <a  [routerLink]="['/class-details', classInfo.id]">
       <div class="bg-white border border-gray-300 rounded-lg hover:bg-gray-100 dark:border-gray-1000 dark:bg-gray-800 dark:hover:bg-gray-700 p-4">
         <img class="object-cover h-32 md:h-40 w-full rounded-t-lg" [src]="classInfo.image" alt="{{classInfo.name}}">
         <div class="p-2">
@@ -135,6 +120,6 @@
       </div>
     </a>
   </div>
-</div> -->
+</div>
 
 
