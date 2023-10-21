@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TestRedirectionAdminComponent } from './admin/test-redirection-admin/test-redirection-admin.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { UserComponent } from './user/user.component'
 import { ClassesComponent } from './user/classes/classes.component';
