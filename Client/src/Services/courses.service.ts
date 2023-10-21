@@ -14,8 +14,7 @@ export class CoursesService {
              
 
   private coursesUrl = 'http://localhost:3000/courses';
-  private baseUrl = 'http://localhost:3000/admin-add-course';
-
+  
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -28,7 +27,7 @@ export class CoursesService {
       return of(result as T);
     };
   }
-  addCourseToClass(classId: string, name: string, file: File) {
+  addCourseToClass(classId: number, name: string, file: File) {
     const formData = new FormData();
     formData.append('name', name);  
     formData.append('file', file);

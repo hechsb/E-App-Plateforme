@@ -14,7 +14,7 @@ import { CoursesService } from 'src/Services/courses.service';
   styleUrls: ['./admin-add-course.component.css']
 })  
 export class AdminAddCourseComponent implements OnInit {
-  classId :string |undefined ;
+  classId :number |undefined ;
   courses: CoursesComponent[] = [];
   name: string = '';
   file !:File  ;
@@ -28,8 +28,9 @@ export class AdminAddCourseComponent implements OnInit {
       console.log('Class ID:', this.classId);
       console.log(this.name)  
     });
+    this.fetchCourses()
   }
-
+  
   onFileSelected(event: any): void {
     const fileInput = event.target;
     if (fileInput.files && fileInput.files.length > 0) {
@@ -80,7 +81,18 @@ export class AdminAddCourseComponent implements OnInit {
   
  
 
-  // fetchCourses(): void {
+  fetchCourses(): void {
+    if(this.classId){
+         this.CoursesService.getCourses(this.classId)
+         .subscribe(
+          (response)=>{
+            console.log("hani lena ",response)
+         },(error)=>{
+          console.log(error)
+         }
+         )
+    }
+  }
   //   this.http
   //     .get(`http://localhost:3000/courses/${this.classId}`)
   //     .subscribe({
