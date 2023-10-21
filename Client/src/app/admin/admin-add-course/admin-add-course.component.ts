@@ -46,9 +46,9 @@ export class AdminAddCourseComponent implements OnInit {
         next: (response) => {
           console.log('Course added successfully!');
           this.fetchCourses();
-          this.name = ''; 
-          this.file = null; 
-          this.errorMessage = ''; 
+          this.name = '';
+          this.file = null;
+          this.errorMessage = '';
         },
         error: (error) => {
           console.error('Error adding course:', error);
