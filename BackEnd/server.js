@@ -8,7 +8,9 @@ const courseRouter = require("./routes/course");
 require("dotenv").config();
 const { OpenAI, OpenAIApi } = require("openai");
 const authJwt = require("./auth/authMiddelware");
+const multer = require('multer')
 
+const upload = multer()
 
 app.use(cors());
 app.use(express.json());
@@ -18,7 +20,7 @@ app.use("/User", UserRouter);
 // app.use(authJwt.verifyToken)
 app.use("/classess", authJwt.verifyToken, classRouter);
 
-app.use("/courses", courseRouter);
+app.use("/courses",authJwt.verifyToken, courseRouter);
 
 // console.log(process.env.API_Key)
 // Aiii 
