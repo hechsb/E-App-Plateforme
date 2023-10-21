@@ -13,7 +13,7 @@
 
   <div *ngIf="isModalOpen">
     <div style="display: flex; justify-content: center; align-items: center; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5);">
-      <form  style="margin-left: -600px; margin-top: -250px;">
+      <form  style="margin-left: -600px; margin-top: -250px;" (ngSubmit)="handleSubmit()">
       <div class="shadow sm:rounded-md sm:overflow-hidden">
         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
           <div class="grid grid-cols-3 gap-6">
@@ -31,7 +31,7 @@
                   id="name"
                   class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
                   placeholder=" Class name"
-                  
+                  [(ngModel)]="name"
                  
                 />
               </div>
@@ -79,7 +79,7 @@
                 id="dropzone-file"
                 type="file"
                 class="hidden"
-                onChange={handleImageUpload}
+                (change)="handleImageUpload($event)"
               />
             </label>
           </div>
