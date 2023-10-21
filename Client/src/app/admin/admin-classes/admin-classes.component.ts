@@ -8,6 +8,7 @@ import { AdminClassService } from '../../../Services/admin-classes.service';
 import { HttpClient } from '@angular/common/http';
 import { Class } from 'src/app/class';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-classes',
   templateUrl: './admin-classes.component.html',
@@ -16,7 +17,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AdminClassesComponent implements OnInit {
   isModalOpen: boolean = false;
   name: string = '';
-  image: string = '';
+  image !: File  ;
   classList: any[] = [];
   searchTerm: string = '';
 
@@ -30,19 +31,21 @@ export class AdminClassesComponent implements OnInit {
       console.error('Error fetching classes:', error);
     }});
   }
-  // handleImageUpload(event: any): void {
-  //   const file = event.target.files[0];
-  //   const formData = new FormData();
-  //   formData.append('file', file);
-  //   formData.append('upload_preset', 'unsigned_upload');
+  handleImageUpload(event: any): void {
+    this.image = event.target.files[0];
+  
+    // const file = event.target.files[0];
+    // const formData = new FormData();
+    // formData.append('file', file);
+    // formData.append('upload_preset', 'unsigned_upload');
 
-  //   this.http.post<any>('https://api.cloudinary.com/v1_1/dmualnorm/image/upload', formData)
-  //     .subscribe(response => {
-  //       this.image = response.secure_url;
-  //     }, error => {
-  //       console.error('Error uploading image to Cloudinary:', error);
-  //     });
-  // }
+    // this.http.post<any>('https://api.cloudinary.com/v1_1/dmualnorm/image/upload', formData)
+    //   .subscribe(response => {
+    //     this.image = response.secure_url;
+    //   }, error => {
+    //     console.error('Error uploading image to Cloudinary:', error);
+    //   });
+  }
 
 
 
@@ -64,20 +67,24 @@ export class AdminClassesComponent implements OnInit {
   //   }
   // }
 
-  // handleSubmit(): void {
-  //   this.http.post('http://localhost:3000/classess/', {
-  //     name: this.name,
-  //     image: this.image
-  //   })
-  //     .subscribe(() => {
-  //       this.classList.push({ name: this.name, image: this.image });
-  //       this.name = '';
-  //       this.image = '';
-  //       this.closeModal();
-  //     }, error => {
-  //       console.error('Error creating class:', error);
-  //     });
-  // }
+  handleSubmit(): void {
+    
+    const formData = new FormData();
+  formData.append('name', this.name);
+  formData.append('image', this.image);
+    console.log(formData)
+    console.log(this.image)
+    console.log(this.name)
+   this.adminClassService.addClass(this.name,this.image)
+   .subscribe(
+    (response)=>{
+      console.log('Class added successfully', response);
+    },
+    (error)=>{
+      console.error("error handeling",error)
+    }
+   )
+  }
 
   openModal(): void {
     this.isModalOpen = true;
