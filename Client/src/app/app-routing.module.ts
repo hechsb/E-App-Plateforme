@@ -13,6 +13,7 @@ import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminClassesComponent } from './admin/admin-classes/admin-classes.component';
 import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
 import { AdminAddCourseComponent } from './admin/admin-add-course/admin-add-course.component';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
 
 const routes: Routes = [
   { path: '', component: SignInComponent },
@@ -28,7 +29,8 @@ const routes: Routes = [
   { path: 'personal-space', component: TodoListComponent },
   { path: 'adminUsers', component: AdminNavbarComponent },
   { path: 'admin-classes', component: AdminClassesComponent },
-  { path: 'class-details/:classId', component: AdminAddCourseComponent }
+  { path: 'class-details/:classId', component: AdminAddCourseComponent },
+  {path : 'Room-Channel/:classId' , component:ChatRoomComponent }
 ];
 
 @NgModule({

@@ -1,37 +1,134 @@
+/* Move the styles to your external CSS file */
+
 .course-card {
   background-color: #fff;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 15px;
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: relative;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  transition: transform 0.2s;
+  margin: 10px;
   width: 20%;
-  height: 120px;
-
+  height: 160px; /* Increased height to accommodate buttons */
+  display: flex;
+  flex-direction: column; /* Added to stack elements vertically */
 }
 
-.course-card h1 {
-  font-size: 24px;
-  margin: 5px 0;
-}
-
-.course-card h3 {
-  font-size: 16px;
-  color: #555;
+.course-card:hover {
+  transform: translateY(-5px);
 }
 
 .pdf-icon::before {
   content: '\1F4D5';
-  /* Unicode character for a PDF symbol (you can change it as needed) */
   font-size: 24px;
   color: #3498db;
-  /* Change the color to your preference */
+}
+
+.course-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Added to space out the items */
+}
+
+.pdf-icon {
+  font-size: 60px;
+  color: #FF5733;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.course-name {
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  margin-top: -50px;
+}
+
+.update-button, .delete-button {
+  background-color: #FF5733;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-bottom: 10px; /* Adjust margin for spacing */
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.update-button:hover, .delete-button:hover {
+  background-color: #FF3118;
+}
+.popup-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background overlay */
+  z-index: 999; /* Ensure the popup is on top of other content */
+  width: 100%; /* Cover the entire viewport width */
+  height: 100%; /* Cover the entire viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-container form {
+  max-width: 400px; /* Adjust the maximum width as needed */
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+/* Add other styles as needed for your form elements */
+.modal-content-custom-cart-checkout {
+
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  padding: 4px 28px;
+  border-radius: 3px;
+  max-width: 500vh;
+  min-width: 300px;
+  max-height: 500vh;
+  height: 30vh;
+  width: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 2);
+  border-radius: 15px;
+
+}
+
+.overlay-checkout {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background: rgba(49, 49, 49, 0.8);
+
+}
+
+.thanks {
+
+  padding-top: 8vh;
+  padding-left: 6vh;
+  width: 80vh;
+  color: white;
+  font-size: 30px;
+
 }
