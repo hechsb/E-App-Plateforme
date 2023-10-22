@@ -45,19 +45,25 @@ const addCourseToClass = async (req, res) => {
 };
 const updateCourseInClass = async (req, res) => {
   const courseId = req.params.courseId;
-  const { name, file } = req.body;
-  console.log("the name issssssssssssssssssssss :  ", name)
-  console.log("the file issssssssssssssssssssss :  ", req.file.path)
-  console.log("the idcourse issssssssssssssssssssss :  ", courseId)
+  const { name } = req.body;
+  if (req.file) var file = req.file.path;
+
   try {
     const course = await Course.findByPk(courseId);
     if (!course) {
       return res.status(404).json("Course not found");
     }
-    await course.update({
-      name,
-      file,
-    });
+    if (file) {
+      await course.update({
+        name,
+        file,
+      });
+    }
+    else {
+      await course.update({
+        name
+      });
+    }
     res.json(course);
   } catch (error) {
     console.error(error);

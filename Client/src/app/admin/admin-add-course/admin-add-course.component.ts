@@ -42,12 +42,16 @@ export class AdminAddCourseComponent implements OnInit {
     if (fileInput.files && fileInput.files.length > 0) {
       this.file = fileInput.files[0];
     }
+    console.log(this.file)
+
   }
   onupdatedFileSelected(event: any): void {
     const fileInput = event.target;
     if (fileInput.files && fileInput.files.length > 0) {
       this.updatedFile = fileInput.files[0];
     }
+    console.log(this.updatedFile)
+
   }
   handleSubmit(): void {
     console.log("fgfgfgfgfg", this.name);
@@ -121,29 +125,43 @@ export class AdminAddCourseComponent implements OnInit {
         )
     }
   }
-  updateModal(courseId: number): void {
+  updateModal(courseId?: number, courseName?: string): void {
     this.showMe = !this.showMe
-    this.courseIdToUpdate = courseId
+    this.courseIdToUpdate = courseId || null
+    this.updatedName = courseName || ''
   }
 
   updateCourse() {
-    if (this.courseIdToUpdate && this.updatedName && this.updatedFile) {
-      const formData = new FormData();
-      formData.append('name', this.updatedName);
-      formData.append('file', this.updatedFile);
+    if (this.courseIdToUpdate && this.updatedName) {
 
-      console.log("updated name ", this.updatedName)
-      this.CoursesService.updateCourse(this.courseIdToUpdate, this.updatedName, this.updatedFile)
-        .subscribe(
-          (response) => {
-            this.showMe = false;
-            console.log("updated success", response);
-            this.fetchCourses();
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
+      if (this.courseIdToUpdate) {
+
+        this.CoursesService.updateCourse(this.courseIdToUpdate, this.updatedName, this.updatedFile)
+          .subscribe(
+            (response) => {
+              this.showMe = false;
+              console.log("updated success", this.courseIdToUpdate);
+              this.fetchCourses();
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+      }
+      else if (!this.courseIdToUpdate) {
+        this.CoursesService.updateCourse(this.courseIdToUpdate, this.updatedName)
+          .subscribe(
+            (response) => {
+              this.showMe = false;
+              console.log("updated success", this.courseIdToUpdate);
+              this.fetchCourses();
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+
+      }
     } else {
       console.log("Please provide valid data for updating the course.");
     }
