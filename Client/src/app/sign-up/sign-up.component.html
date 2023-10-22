@@ -14,7 +14,7 @@
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
                 <form [formGroup]="signUpForm">
-                  <div class="d-flex align-items-center mb-3 pb-1">
+                  <div class="d-flex align-items-center  mb-3 pb-1">
                     <i class="fas fas fa-book-open fa-2x me-3" [style.color]="'#ff6219'"></i>
                     <span class="h1 fw-bold mb-0">Welcome to E-LEARNING</span>
                   </div>
@@ -31,15 +31,15 @@
                   </div>
 
                   <div class="w-full max-w-sm mt-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor="lastName">
+                    <label class="block text-gray-700 text-sm font-bold mb-2 max-w-sm mt-4" htmlFor="lastName">
                       Last name
                     </label>
                     <input style="width: 635px;" type="text"
-                      class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                      class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500 "
                       name="lastName" formControlName="lastName" placeholder="Enter your last name" />
                   </div>
                   <div class="w-full max-w-sm">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                    <label class="block text-gray-700 text-sm font-bold mb-2 max-w-sm mt-4" htmlFor="email">
                       Email address
                     </label>
                     <input type="email" style="width: 635px;"
