@@ -21,7 +21,9 @@ import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.componen
 import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 import { AdminClassesComponent } from './admin/admin-classes/admin-classes.component';
 import { PendingUsersComponent } from './admin/pending-users/pending-users.component';
+import { UpdateComponent } from './admin/update/update.component';
 import { AdminAddCourseComponent } from './admin/admin-add-course/admin-add-course.component';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { AdminAddCourseComponent } from './admin/admin-add-course/admin-add-cour
     AdminUsersComponent,
     AdminClassesComponent,
     PendingUsersComponent,
-    AdminAddCourseComponent
+    UpdateComponent,
+    AdminAddCourseComponent,
+    ChatRoomComponent
   ],
 
   imports: [

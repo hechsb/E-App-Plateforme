@@ -1,0 +1,63 @@
+/* group-chat.component.css */
+
+.group-chat-container {
+    display: flex;
+    flex-direction: column; /* Arrange children vertically */
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    height: 600px;
+  }
+  
+  .chat-header {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .chat-messages {
+    flex: 1; /* Allow messages area to expand and take remaining height */
+    max-height: 100%; /* Max height for the messages container */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .message {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+  }
+  
+  .message-input {
+    display: flex;
+    align-items: center;
+    margin-top: 10px; /* Add spacing between messages and input */
+  }
+  
+  input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: #4CAF50; /* Green button for sending messages */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45A049; /* Darker green on hover */
+  }
+  

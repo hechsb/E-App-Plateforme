@@ -60,5 +60,17 @@ export class CoursesService {
       )
   }
 
+  updateCourse(courseIdToUpdate: number, updatedName: string, updatedFile: File){
+    const formDataa = new FormData();
+    formDataa.append('name', updatedName);  
+    formDataa.append('file', updatedFile);
+
+    return this.http.put(`http://localhost:3000/courses/${courseIdToUpdate}`, formDataa);
+  }
+
+  deleteCourse(courseId : number){
+    return this.http.delete(`http://localhost:3000/courses/${courseId}`)
+  }
+
 } 
 
