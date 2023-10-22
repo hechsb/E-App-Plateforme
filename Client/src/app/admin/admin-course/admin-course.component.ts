@@ -14,10 +14,10 @@ export class AdminCourseComponent {
   updatedName: string = '';
   updatedFile: File | undefined = undefined;
   isEditMode: boolean = false;
-  CourseList: any [] = [];
+  CourseList: any[] = [];
   isModalOpen: boolean = false;
 
-  constructor(private http: HttpClient, private CoursesService: CoursesService) {}
+  constructor(private http: HttpClient, private CoursesService: CoursesService) { }
   // ngOnInit(): void {
   //   this.CoursesService.fetchClasses().
   //   subscribe({next:(data :Course[]):void => {
@@ -33,6 +33,10 @@ export class AdminCourseComponent {
   }
 
   handleUpdate() {
+
+    if (this.updatedName === '') {
+      this.updatedName = this.course.name
+    }
     const formData = new FormData();
     formData.append('name', this.updatedName);
     if (this.updatedFile) {
@@ -72,5 +76,5 @@ export class AdminCourseComponent {
     this.isModalOpen = false;
   }
 
-  
+
 }

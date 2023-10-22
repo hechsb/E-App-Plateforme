@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+
+
 const {
   getAllCoursesFromClass,
   addCourseToClass,
@@ -14,7 +16,7 @@ router.get("/:classId", getAllCoursesFromClass);
 router.post("/:classId", upload, addCourseToClass);
 
 
-router.put("/:courseId",upload, updateCourseInClass); 
+router.put("/:courseId", upload, updateCourseInClass);
 router.delete("/:courseId", deleteCourseFromClass);
 
 module.exports = router;
