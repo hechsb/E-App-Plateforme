@@ -23,6 +23,7 @@ import { AdminClassesComponent } from './admin/admin-classes/admin-classes.compo
 import { PendingUsersComponent } from './admin/pending-users/pending-users.component';
 import { UpdateComponent } from './admin/update/update.component';
 import { AdminAddCourseComponent } from './admin/admin-add-course/admin-add-course.component';
+import { ChatRoomComponent } from './chat-room/chat-room.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { AdminAddCourseComponent } from './admin/admin-add-course/admin-add-cour
     AdminClassesComponent,
     PendingUsersComponent,
     UpdateComponent,
-    AdminAddCourseComponent
+    AdminAddCourseComponent,
+    ChatRoomComponent
   ],
 
   imports: [

@@ -9,9 +9,12 @@ const {
   upload,
 } = require("../controllers/course");
 
+
 router.get("/:classId", getAllCoursesFromClass);
 router.post("/:classId", upload, addCourseToClass);
-router.put("/:courseId", updateCourseInClass);
+
+
+router.put("/:courseId",upload, updateCourseInClass); 
 router.delete("/:courseId", deleteCourseFromClass);
 
 module.exports = router;

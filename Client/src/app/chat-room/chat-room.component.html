@@ -1,0 +1,25 @@
+<app-user-nav-bar></app-user-nav-bar>
+<!-- group-chat.component.html -->
+
+<div class="group-chat-container">
+    <!-- Chat Header -->
+    <div class="chat-header">
+      <h1>Group Chat Name</h1>
+    </div>
+  
+    <!-- Chat Messages -->
+    <div class="chat-messages">
+      <div *ngFor="let message of messages">
+        <div class="message" [ngClass]="{'user-message': message.isUserMessage}">
+          <div class="message-sender">{{ message.sender }}</div>
+          <div class="message-content">{{ message.content }}</div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Message Input -->
+    <div class="message-input">
+      <input type="text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder="Type your message..." />
+      <button (click)="sendMessage()" class="text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-orange-800 shadow-lg shadow-orange-500/50 dark:shadow-lg dark:shadow-orange-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Send</button>
+    </div>
+  </div>
