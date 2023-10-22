@@ -47,7 +47,7 @@ const updateCourseInClass = async (req, res) => {
   const courseId = req.params.courseId;
   const { name, file } = req.body;
   console.log("the name issssssssssssssssssssss :  ", name )
-  console.log("the file issssssssssssssssssssss :  ", file )
+  console.log("the file issssssssssssssssssssss :  ", req.file.path )
   console.log("the idcourse issssssssssssssssssssss :  ", courseId )
   try {
     const course = await Course.findByPk(courseId);
@@ -79,30 +79,30 @@ const deleteCourseFromClass = async (req, res) => {
     res.status(500).json("Internal server error");
   }
 };
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "files");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "files");
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, Date.now() + path.extname(file.originalname));
+//   },
+// });
 
-const upload = multer({
-  storage: storage,
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype === "application/pdf") {
-      cb(null, true);
-    } else {
-      cb("Only PDF files are allowed!");
-    }
-  },
-}).single("file");
+// const upload = multer({
+//   storage: storage,
+//   fileFilter: (req, file, cb) => {
+//     if (file.mimetype === "application/pdf") {
+//       cb(null, true);
+//     } else {
+//       cb("Only PDF files are allowed!");
+//     }
+//   },
+// }).single("file");
 
 module.exports = {
   addCourseToClass,
   getAllCoursesFromClass,
   updateCourseInClass,
   deleteCourseFromClass,
-  upload,
+  upload: multer.upload,
 };
