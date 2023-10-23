@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const multer = require('multer');
 
+
+
 const {
   getAllCoursesFromClass,
   addCourseToClass,
@@ -22,7 +24,7 @@ const upload = multer({ storage: storage });
 
 router.get("/:classId", getAllCoursesFromClass);
 router.post("/:classId", upload.single('file'), addCourseToClass);
-router.put("/:courseId", upload.single('file'), updateCourseInClass); 
+router.put("/:courseId", upload.single('file'), updateCourseInClass);
 router.delete("/:courseId", deleteCourseFromClass);
 
 module.exports = router;
