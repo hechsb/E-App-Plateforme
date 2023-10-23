@@ -8,13 +8,13 @@ import { Course } from '../app/course'
   providedIn: 'root'
 })
 export class CoursesService {
-  
+
 
   constructor(private http: HttpClient) { }
-             
+
 
   private coursesUrl = 'http://localhost:3000/courses';
-  
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -29,13 +29,13 @@ export class CoursesService {
   }
   addCourseToClass(classId: number, name: string, file: File) {
     const formData = new FormData();
-    formData.append('name', name);  
+    formData.append('name', name);
     formData.append('file', file);
 
     return this.http.post(`http://localhost:3000/courses/${classId}`, formData);
   }
 
- 
+
 
 
 
@@ -60,5 +60,23 @@ export class CoursesService {
       )
   }
 
-} 
+  updateCourse(courseIdToUpdate: number, updatedName: string, updatedFile?: File) {
+    const formDataa = new FormData();
+    if (updatedFile) {
+      formDataa.append('name', updatedName);
+      formDataa.append('file', updatedFile);
+    }
+    else {
+      formDataa.append('name', updatedName);
+
+    }
+
+    return this.http.put(`http://localhost:3000/courses/${courseIdToUpdate}`, formDataa);
+  }
+
+  deleteCourse(courseId: number) {
+    return this.http.delete(`http://localhost:3000/courses/${courseId}`)
+  }
+
+}
 

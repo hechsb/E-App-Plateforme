@@ -18,8 +18,13 @@ export class AdminAddCourseComponent implements OnInit {
   courses: Course[] = [];
   name: string = '';
   file !: File;
+  updatedName: string = '';
+  updatedFile !: File;
+  courseToDeleteId: number | undefined
   errorMessage: string = '';
-
+  showMe: boolean = false;
+  courseIdToUpdate: number | null = null;
+  showDeletePopUp: boolean = false
   constructor(private http: HttpClient, private route: ActivatedRoute, private location: Location, private CoursesService: CoursesService) { }
 
   ngOnInit(): void {
@@ -29,6 +34,7 @@ export class AdminAddCourseComponent implements OnInit {
       console.log(this.name)
     });
     this.fetchCourses()
+
   }
 
   onFileSelected(event: any): void {
@@ -36,6 +42,16 @@ export class AdminAddCourseComponent implements OnInit {
     if (fileInput.files && fileInput.files.length > 0) {
       this.file = fileInput.files[0];
     }
+    console.log(this.file)
+
+  }
+  onupdatedFileSelected(event: any): void {
+    const fileInput = event.target;
+    if (fileInput.files && fileInput.files.length > 0) {
+      this.updatedFile = fileInput.files[0];
+    }
+    console.log(this.updatedFile)
+
   }
   handleSubmit(): void {
     console.log("fgfgfgfgfg", this.name);
@@ -65,22 +81,6 @@ export class AdminAddCourseComponent implements OnInit {
       this.errorMessage = 'Please provide both a name and a file, and ensure the classId is not null.';
     }
   }
-  //   .post(`http://localhost:3000/courses/classId`, formData)
-  //   .subscribe({
-  //     next: (response) => {
-  //       console.log('Course added successfully!');
-  //       this.fetchCourses();
-  //       this.name = ''; 
-  //       this.file = null; 
-  //       this.errorMessage = ''; 
-  //     },
-  //     error: (error) => {
-  //       console.error('Error adding course:', error);
-  //       this.errorMessage = 'An error occurred while adding the course.';
-  //     }
-  //   });
-
-
 
   fetchCourses(): void {
     if (this.classId) {
@@ -102,16 +102,70 @@ export class AdminAddCourseComponent implements OnInit {
 
 
 
-  //   this.http
-  //     .get(`http://localhost:3000/courses/${this.classId}`)
-  //     .subscribe({
-  //       next: (data: any) => {
-  //         this.courses = data;
-  //       },
-  //       error: (error) => {
-  //         console.error('Error fetching courses:', error);
-  //         this.errorMessage = 'An error occurred while fetching courses.';
-  //       }
-  //     });
-  // }
+
+
+  toggleDeleteModal(deletedCourseId: number) {
+    this.showDeletePopUp = !this.showDeletePopUp
+    this.courseToDeleteId = deletedCourseId
+  }
+
+  handleDelete() {
+    console.log(this.courseToDeleteId)
+    if (this.courseToDeleteId) {
+      this.CoursesService.deleteCourse(this.courseToDeleteId)
+        .subscribe(
+          (response) => {
+            console.log(response)
+            this.showDeletePopUp = false
+            this.fetchCourses()
+          },
+          (error) => {
+            console.log(error)
+          }
+        )
+    }
+  }
+  updateModal(courseId?: number, courseName?: string): void {
+    this.showMe = !this.showMe
+    this.courseIdToUpdate = courseId || null
+    this.updatedName = courseName || ''
+  }
+
+  updateCourse() {
+    if (this.courseIdToUpdate && this.updatedName) {
+
+      if (this.courseIdToUpdate) {
+
+        this.CoursesService.updateCourse(this.courseIdToUpdate, this.updatedName, this.updatedFile)
+          .subscribe(
+            (response) => {
+              this.showMe = false;
+              console.log("updated success", this.courseIdToUpdate);
+              this.fetchCourses();
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+      }
+      else if (!this.courseIdToUpdate) {
+        this.CoursesService.updateCourse(this.courseIdToUpdate, this.updatedName)
+          .subscribe(
+            (response) => {
+              this.showMe = false;
+              console.log("updated success", this.courseIdToUpdate);
+              this.fetchCourses();
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+
+      }
+    } else {
+      console.log("Please provide valid data for updating the course.");
+    }
+  }
+
+
 }

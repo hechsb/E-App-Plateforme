@@ -50,25 +50,6 @@ export class AdminClassesComponent implements OnInit {
   }
 
 
-
-  // filteredClasses(): any[] {
-  //   return this.classList.filter(classInfo =>
-  //     classInfo.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-  //   );
-  // }
-
-  // handleDelete(classId: number): void {
-  //   const shouldDelete = window.confirm('Are you sure you want to delete this class?');
-  //   if (shouldDelete) {
-  //     this.http.delete(`http://localhost:3000/classess/${classId}`)
-  //       .subscribe(() => {
-  //         this.fetchClasses();
-  //       }, error => {
-  //         console.error(error);
-  //       });
-  //   }
-  // }
-
   handleSubmit(): void {
 
     const formData = new FormData();

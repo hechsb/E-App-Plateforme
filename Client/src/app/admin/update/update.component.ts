@@ -30,12 +30,7 @@ export class UpdateComponent {
     if (this.name === '') {
       this.name = this.selectedClass?.name
     }
-    const formData = new FormData();
-    formData.append('name', this.name);
-    formData.append('image', this.image);
-    console.log(formData)
-    console.log(this.image)
-    console.log(this.name)
+
     this.adminClassService.updateClass(this.name, this.image, this.selectedClass?.id)
       .subscribe(
         (response) => {
